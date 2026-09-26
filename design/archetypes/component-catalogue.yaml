@@ -1,0 +1,9 @@
+id: component-catalogue
+version: 0.1.0
+intent: Present approved visual components as a multimodal reference board.
+rules:
+  show_component_id: true
+  show_component_name: true
+  regular_grid: true
+  preserve_whitespace: true
+  decorative_atmosphere: minimal

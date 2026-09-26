@@ -1,0 +1,9 @@
+id: architecture
+version: 0.1.0
+intent: Explain components, trust boundaries and data/control flows while retaining presentation-level clarity.
+rules:
+  explicit_flow: true
+  use_registered_components: true
+  distinguish_primary_secondary_planes: true
+  split_when_density_exceeds_limit: true
+  atmosphere_after_foreground: true

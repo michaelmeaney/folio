@@ -1,0 +1,8 @@
+id: process
+version: 0.1.0
+intent: Explain a sequence or feedback loop with minimal visual primitives.
+rules:
+  preferred_direction: left-to-right
+  generous_spacing: true
+  use_curved_arrows_for_feedback: true
+  avoid_card_per_step: true

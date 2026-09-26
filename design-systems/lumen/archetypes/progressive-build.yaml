@@ -1,0 +1,10 @@
+id: progressive-build
+version: 0.1.0
+intent: Reveal a complex composition incrementally and assemble it into a final complete slide.
+rules:
+  stable_positions: true
+  redesign_existing_components: false
+  final_reveal_required: true
+  prior_content_opacity_range: [0.4, 0.6]
+  stages_derived_from_content: true
+  introduce_only_narratively_relevant_elements: true

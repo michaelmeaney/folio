@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "scope": "shared",
+  "description": "Design-system-neutral semantic component registry. Design systems may provide visual variants while retaining stable semantic identities.",
+  "components": [],
+  "statuses": ["candidate", "approved", "deprecated"],
+  "requiredFields": ["id", "name", "version", "category", "semanticRole", "asset", "status"]
+}

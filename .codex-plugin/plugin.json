@@ -1,0 +1,37 @@
+{
+  "name": "folio",
+  "version": "0.2.2",
+  "description": "Multimodal presentation engineering from quick reference reconstruction to governed editable PowerPoint decks.",
+  "author": {
+    "name": "Michael Meaney",
+    "url": "https://github.com/michaelmeaney"
+  },
+  "homepage": "https://github.com/michaelmeaney/folio",
+  "repository": "https://github.com/michaelmeaney/folio",
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "presentations",
+    "powerpoint",
+    "design-systems",
+    "multimodal"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Folio",
+    "shortDescription": "From reference image to governed editable presentation",
+    "longDescription": "A multimodal presentation-engineering framework with Quick reference reconstruction, reference-free or reference-based Guided styling, and Governed generation using installed or user-supplied design systems.",
+    "developerName": "Michael Meaney",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/michaelmeaney/folio",
+    "brandColor": "#7657E8",
+    "defaultPrompt": [
+      "Make this reference image an editable PowerPoint slide.",
+      "Recreate this deck with a few visual preferences.",
+      "Create a governed presentation using Lumen."
+    ]
+  }
+}

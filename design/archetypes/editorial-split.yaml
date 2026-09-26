@@ -1,0 +1,12 @@
+id: editorial-split
+version: 0.1.0
+intent: Pair a dominant editorial statement with a supporting narrative, visual, or both.
+slots:
+  headline: {columns: [4,7], required: true}
+  supporting: {columns: [4,6], required: false}
+  visual: {columns: [5,8], required: false}
+rules:
+  require_one_of: [supporting, visual]
+  asymmetrical: true
+  centre_all_content: false
+  atmosphere_after_foreground: true

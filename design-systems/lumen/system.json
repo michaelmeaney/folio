@@ -1,0 +1,16 @@
+{
+  "id": "lumen",
+  "name": "Lumen",
+  "version": "0.1.0",
+  "description": "Minimal modern editorial presentation system with strong typography, generous whitespace, restrained vector graphics and soft atmospheric depth.",
+  "design": "DESIGN.md",
+  "tokens": "tokens.json",
+  "archetypes": "archetypes/",
+  "componentRegistry": "components/registry.json",
+  "catalogue": "catalogue/",
+  "prompts": {
+    "visualGeneration": "prompts/visual-generation.md",
+    "reconstruction": "prompts/reconstruction.md"
+  },
+  "sharedComponentRegistry": "../../components/shared/registry.json"
+}

@@ -1,0 +1,6 @@
+{
+  "version": "0.1.0",
+  "components": [],
+  "statuses": ["candidate","approved","deprecated"],
+  "requiredFields": ["id","name","version","category","semanticRole","asset","status"]
+}

@@ -1,0 +1,61 @@
+name: OpenGrep
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: opengrep-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  scan:
+    name: Scan source and configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Download OpenGrep
+        env:
+          OPENGREP_VERSION: v1.30.0
+          OPENGREP_SHA256: 35779bdd72e92129c8df2a77f0c55e8c08356801ea92591ef32108d6b28d564c
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 3 \
+            "https://github.com/opengrep/opengrep/releases/download/${OPENGREP_VERSION}/opengrep_manylinux_x86" \
+            --output opengrep
+          printf '%s  %s\n' "$OPENGREP_SHA256" opengrep | sha256sum --check --status
+          chmod 0755 opengrep
+
+      - name: Scan repository
+        env:
+          OPENGREP_ENABLE_VERSION_CHECK: '0'
+        run: |
+          set -euo pipefail
+          ./opengrep scan \
+            --config auto \
+            --error \
+            --sarif-output opengrep.sarif \
+            --no-git-ignore \
+            --exclude .git \
+            --exclude node_modules \
+            --exclude dist \
+            --exclude .astro \
+            --exclude .pulumi \
+            .
+
+      - name: Upload OpenGrep results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: opengrep-results
+          path: opengrep.sarif
+          if-no-files-found: warn

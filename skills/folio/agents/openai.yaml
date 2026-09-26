@@ -1,0 +1,7 @@
+interface:
+  display_name: "Folio"
+  short_description: "Reconstruct references or build governed editable decks"
+  brand_color: "#7657E8"
+  default_prompt: "Use Folio to turn this reference into an editable presentation. Ask me which mode to use if it is not clear."
+policy:
+  allow_implicit_invocation: true
