@@ -7,24 +7,34 @@ description: Create editable PowerPoint presentations from reference images, bri
 
 Treat supplied or generated imagery as a visual specification, not the final presentation artefact.
 
-## Select a capability mode
+## Confirm transformation intent
 
-Determine the mode before doing presentation work.
+Before starting presentation generation, establish and play back the requested transformation. Presentation generation is a multi-step workflow, so do not begin expensive execution while the transformation intent is ambiguous.
 
-If the user's request clearly implies a mode, use it without asking. Otherwise ask one concise question:
+For a supplied reference image, distinguish:
 
-"Which Folio mode do you want?
-1. Quick — recreate the reference as an editable slide/deck; no design system.
-2. Guided — create or reconstruct with lightweight visual preferences; no formal design system.
-3. Governed — apply an installed or supplied design system, including its tokens, archetypes/components where available, and validation."
+1. **Convert** — recreate the reference as an editable PowerPoint slide/deck while preserving its existing visual design. This maps to **Quick** mode.
+2. **Redesign** — use the reference as content/composition evidence and recreate it using a formal design system. This maps to **Governed** mode.
 
-Infer modes as follows:
+If the request does not already make this distinction unambiguous, ask:
 
-- "Recreate this image", "make this editable", "turn this into a slide" with no styling/governance request -> **Quick**.
-- "Clean this up", "modernise this", "make a consistent deck from these references", or "create a deck using these colours/fonts" without formal governance -> **Guided**.
-- Any explicit design-system, brand-system, token, Lumen, component-library, governance, or reusable-archetype request -> **Governed**.
+"How should I use this reference?
+1. Convert it — preserve the existing design and recreate it as editable PowerPoint.
+2. Redesign it — recreate the content using a design system."
 
-Do not force design-system setup on Quick or Guided work.
+Then play back the interpretation in plain language and obtain confirmation before generation. State the consequence rather than relying on internal mode names.
+
+Examples:
+- "I'll recreate this reference as editable PowerPoint while preserving its existing visual design. I won't apply a Folio design system."
+- "I'll use the reference for its content and structure, then recreate it using a design system rather than reproducing the reference styling."
+
+Even when the original request appears explicit, play back the interpreted transformation before execution so the user has an opportunity to correct it. Do not start generation until the transformation is confirmed.
+
+An explicit request to use a named, selected or supplied design system is **Governed** mode. In a plugin installation, load `../../design-systems/registry.json` when it is available and treat each registered system name or ID as an explicit Governed request. A standalone Skill installation may not include that plugin-level registry; do not make registry lookup a prerequisite for classifying or using a user-supplied system.
+
+If the user chooses **Redesign** without already naming or supplying a design system, do not select one on their behalf. Read `references/design-system-resolution.md`, present installed Folio options from the canonical registry when it is available, and offer the option to provide a repository link containing an alternative design system. If the registry is absent in a standalone Skill installation, explain that the installed-system inventory is unavailable and offer the supplied-system option. Obtain their selection before composing.
+
+Guided mode remains available when the user explicitly asks for lightweight adaptation such as "clean this up", "modernise this", "use these colours/fonts", or similar preferences without a formal design system. Play back that interpretation and confirm it before execution.
 
 Read `references/modes.md` for the exact capability contract.
 
@@ -67,15 +77,16 @@ Do not silently transform Guided work into Governed work.
 
 Resolve the design-system source before composing. Read `references/design-system-resolution.md`.
 
-Use this precedence:
+Resolve the active design authority only after the user's selection is explicit:
 
 1. User-supplied organisational design-system or brand/design resources, whether complete or partial.
-2. A user-named design system installed in the Folio plugin.
-3. Lumen only when the user requests Folio governance without naming or supplying another system.
+2. A user-selected design system installed in the Folio plugin.
+
+If Governed mode or Redesign is requested without a selected system, present the registered Folio options plus the option to supply an alternative repository/link, then wait for the user's choice. Do not default to Lumen.
 
 For a user-supplied system, inspect and use the supplied rules, tokens, templates, assets, components and examples as the active design authority. Do not substitute Lumen rules or assets into that system unless the user explicitly requests a hybrid.
 
-For an installed Folio system, resolve the plugin root two levels above this skill directory and load `../../design-systems/<system>/system.json` first.
+For installed Folio systems, use `../../design-systems/registry.json` when it is present in the plugin installation. Treat it as the canonical inventory for discovery, listing and ID/name resolution. If the user asks which installed systems are available and the registry is absent, explain that the standalone Skill bundle does not include the plugin's inventory; do not infer available systems from directories. After selecting a registered system, follow its `manifest` path and load that `system.json` first. Without the registry, continue with user-supplied design-system resources and do not attempt plugin-relative system discovery.
 
 Treat that manifest as authoritative for all further resource discovery. Resolve only paths and resource categories declared by the manifest, relative to the system directory unless the manifest explicitly points elsewhere. Do not assume Lumen filenames, directories, or optional resources for another system.
 

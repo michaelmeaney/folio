@@ -1,0 +1,9 @@
+{
+  "id": "meridian",
+  "name": "Meridian",
+  "version": "0.1.0",
+  "description": "Executive editorial system for strategy, evidence and board-level narratives: high contrast, rigorous hierarchy, annotated charts and disciplined information density.",
+  "design": "DESIGN.md",
+  "tokens": "tokens.json",
+  "sharedComponentRegistry": "../../components/shared/registry.json"
+}

@@ -1,14 +1,17 @@
 # Folio workflow
 
-## Mode selection
+## Intent confirmation
 
-Use the selected Folio capability mode before choosing the execution path.
+Before choosing the execution path, play back Folio's interpretation of the requested transformation and obtain user confirmation.
 
-- Quick: reference is the design authority.
-- Guided: reference plus explicit preferences, or brief/content plus explicit preferences when no reference exists, are the design authority.
-- Governed: the resolved active design system is the design authority.
+For reference-image work:
+- **Convert** -> Quick: the reference is the design authority.
+- **Redesign** -> Governed: the selected design system is the design authority and the reference provides content/composition evidence.
+- Explicit lightweight adaptation -> Guided: the reference plus confirmed user preferences are the design authority.
 
-Do not load governed resources in Quick or Guided mode.
+Do not begin presentation generation until this intent is confirmed. Do not load governed resources in Quick or Guided mode.
+
+For Governed work, explicitly ask the user to choose either an installed Folio design system from the canonical registry or an alternative design-system repository/link supplied by the user. Play back the selected system before composition.
 
 ## Reference-image path
 

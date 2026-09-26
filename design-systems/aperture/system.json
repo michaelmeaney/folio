@@ -1,0 +1,9 @@
+{
+  "id": "aperture",
+  "name": "Aperture",
+  "version": "0.1.0",
+  "description": "Precision-minimal presentation system inspired by premium industrial and digital product communication: content-first, cinematic whitespace, disciplined typography and restrained colour.",
+  "design": "DESIGN.md",
+  "tokens": "tokens.json",
+  "sharedComponentRegistry": "../../components/shared/registry.json"
+}

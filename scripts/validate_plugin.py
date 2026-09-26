@@ -23,6 +23,7 @@ REQUIRED_RESOURCES = [
     "skills/folio/references/modes.md",
     "skills/folio/references/design-system-resolution.md",
     "components/shared/registry.json",
+    "design-systems/registry.json",
     "design-systems/lumen/system.json",
     "design-systems/lumen/DESIGN.md",
     "design-systems/lumen/tokens.json",
@@ -176,15 +177,106 @@ def validate(root: Path) -> list[str]:
         if not (root / rel).is_file():
             errors.append(f"missing required Folio resource: {rel}")
 
-    system = load_json(root / "design-systems" / "lumen" / "system.json", errors)
-    if system is not None:
-        lumen_root = root / "design-systems" / "lumen"
-        for field in ("design", "tokens", "componentRegistry", "catalogue"):
-            rel = system.get(field)
-            if not isinstance(rel, str) or not (lumen_root / rel).exists():
+    registry_path = root / "design-systems" / "registry.json"
+    registry = load_json(registry_path, errors)
+    if registry is not None:
+        systems = registry.get("systems")
+        if not isinstance(systems, list) or not systems:
+            errors.append("design-systems/registry.json systems must be a non-empty array")
+        else:
+            seen_ids: set[str] = set()
+            for entry in systems:
+                if not isinstance(entry, dict):
+                    errors.append("design-systems/registry.json system entries must be objects")
+                    continue
+                system_id = entry.get("id")
+                manifest_rel = entry.get("manifest")
+                if not isinstance(system_id, str) or not system_id.strip():
+                    errors.append("registered design system id must be a non-empty string")
+                    continue
+                if system_id in seen_ids:
+                    errors.append(f"duplicate registered design system id: {system_id}")
+                seen_ids.add(system_id)
+                if not isinstance(manifest_rel, str) or not manifest_rel.strip():
+                    errors.append(f"registered design system {system_id!r} must declare manifest")
+                    continue
+
+                system_manifest_path = root / "design-systems" / manifest_rel
+                if not system_manifest_path.is_file():
+                    errors.append(
+                        f"registered design system {system_id!r} manifest does not resolve to a file"
+                    )
+                    continue
+                system = load_json(system_manifest_path, errors)
+                if system is None:
+                    continue
+                if system.get("id") != system_id:
+                    errors.append(
+                        f"registered design system {system_id!r} manifest id does not match"
+                    )
+
+                system_root = system_manifest_path.parent
+                for field in ("design", "tokens"):
+                    rel = system.get(field)
+                    if (
+                        not isinstance(rel, str)
+                        or not rel.strip()
+                        or not (system_root / rel).is_file()
+                    ):
+                        errors.append(
+                            f"{system_id} system.json field {field!r} does not resolve "
+                            "to a file"
+                        )
+
+                optional_resources = {
+                    "archetypes": "directory",
+                    "componentRegistry": "file",
+                    "catalogue": "directory",
+                    "sharedComponentRegistry": "file",
+                }
+                for field, resource_type in optional_resources.items():
+                    rel = system.get(field)
+                    if rel is None:
+                        continue
+                    if not isinstance(rel, str) or not rel.strip():
+                        resolves = False
+                    else:
+                        resource_path = system_root / rel
+                        resolves = (
+                            resource_path.is_dir()
+                            if resource_type == "directory"
+                            else resource_path.is_file()
+                        )
+                    if not resolves:
+                        errors.append(
+                            f"{system_id} system.json field {field!r} does not resolve "
+                            f"to a {resource_type}"
+                        )
+
+                prompts = system.get("prompts")
+                if prompts is not None:
+                    if not isinstance(prompts, dict):
+                        errors.append(f"{system_id} system.json prompts must be an object")
+                    else:
+                        for prompt_name, rel in prompts.items():
+                            prompt_path = (
+                                system_root / rel if isinstance(rel, str) else None
+                            )
+                            if (
+                                not isinstance(rel, str)
+                                or not rel.strip()
+                                or prompt_path is None
+                                or not prompt_path.is_file()
+                            ):
+                                errors.append(
+                                    f"{system_id} system.json prompt {prompt_name!r} "
+                                    "does not resolve to a file"
+                                )
+
+            default_id = registry.get("default")
+            if default_id is not None and default_id not in seen_ids:
                 errors.append(
-                    f"Lumen system.json field {field!r} does not resolve "
-                    "to an existing resource"
+                    "design-systems/registry.json default must reference a registered id"
                 )
 
     for path in (manifest_path, skill_path, agent_path):

@@ -1,0 +1,9 @@
+{
+  "id": "gridline",
+  "name": "Gridline",
+  "version": "0.1.0",
+  "description": "Technical systems presentation language built around visible structure, strong grids, neutral typography, precise diagrams and evidence-led data visualisation.",
+  "design": "DESIGN.md",
+  "tokens": "tokens.json",
+  "sharedComponentRegistry": "../../components/shared/registry.json"
+}

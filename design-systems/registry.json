@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "default": "lumen",
+  "systems": [
+    {"id":"lumen","name":"Lumen","manifest":"lumen/system.json","summary":"Soft dimensional editorial system with spacious composition and restrained atmospheric depth."},
+    {"id":"aperture","name":"Aperture","manifest":"aperture/system.json","summary":"Precision-minimal product communication with cinematic whitespace and restrained colour."},
+    {"id":"meridian","name":"Meridian","manifest":"meridian/system.json","summary":"Executive editorial system for strategy, evidence, annotated charts and board-level narratives."},
+    {"id":"mosaic","name":"Mosaic","manifest":"mosaic/system.json","summary":"Modular productivity language with adaptive regions, semantic colour and restrained depth."},
+    {"id":"gridline","name":"Gridline","manifest":"gridline/system.json","summary":"Technical systems language with rigorous grids, precise diagrams and evidence-led data visualisation."},
+    {"id":"werk","name":"Werk","manifest":"werk/system.json","summary":"Geometric modernist system using asymmetric composition, primary form and functional typography."}
+  ]
+}

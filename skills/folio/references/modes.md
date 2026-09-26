@@ -45,12 +45,11 @@ Use when the user explicitly requests a Folio design system, names Lumen, suppli
 
 Design authority: the active design system, whether supplied by the user or installed with Folio. Supplied references act as composition/content evidence unless the active system says otherwise.
 
-Resolve design-system sources in this order:
-1. user-supplied organisational design-system resources, whether complete or partial;
-2. a user-named design system installed with Folio;
-3. Lumen when governance is requested but no other system is named or supplied.
+Before Governed execution, explicitly ask the user to select the design-system source:
+1. one of the installed Folio systems from the canonical registry; or
+2. an alternative design system supplied by the user, including a repository link.
 
-Do not replace a supplied or named design system with Lumen silently.
+Do not choose Lumen or another installed system implicitly. Play back the selected system and transformation intent before generation.
 
 Load and enforce the rules that exist for the active system, which may include:
 - design rules;
