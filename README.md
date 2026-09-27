@@ -169,6 +169,7 @@ This creates a natural evaluation boundary. The same presentation task, design s
 ```text
 folio/
 ├── .codex-plugin/
+├── .claude-plugin/
 ├── skills/folio/
 ├── design-systems/
 ├── components/
@@ -182,7 +183,17 @@ This repository contains the Folio plugin and its canonical design systems, comp
 
 ## Plugin and Skill packaging
 
-Folio is currently packaged as a Codex plugin. The plugin manifest lives at `.codex-plugin/plugin.json` and exposes the Folio orchestration Skill from `skills/folio/`.
+Folio is packaged for Codex and Claude Code. Codex reads `.codex-plugin/plugin.json`; Claude Code reads `.claude-plugin/plugin.json`. Both packages expose the same Folio orchestration Skill from `skills/folio/`, with the canonical design systems and supporting resources kept at the plugin root.
+
+To install Folio in Claude Code from its marketplace, run:
+
+```sh
+claude plugin marketplace add michaelmeaney/folio
+claude plugin install folio@folio
+claude plugin update folio@folio
+```
+
+To load the checkout for one Claude Code session while developing, run `claude --plugin-dir .` from the repository root. The Claude Code marketplace manifest is `.claude-plugin/marketplace.json`. The Claude Code manifest intentionally omits a version so Git-hosted installs use the source commit as their revision; if a version is added later, increment it for each release.
 
 The Skill is a control plane rather than a copy of the design system. When installed as part of the plugin it resolves Lumen and future design systems from the plugin root, keeping tokens, archetypes, components and catalogues canonical.
 
@@ -263,7 +274,7 @@ See [Model compatibility](docs/implementation/implementation-001-model-compatibi
 
 ## Validation
 
-Run `python3 scripts/validate_plugin.py .` from the repository root before publishing or installing a plugin revision. The validator checks the manifest, Skill entrypoint/metadata, required Folio resources and starter-prompt constraints.
+Run `python3 scripts/validate_plugin.py .` from the repository root before publishing or installing a plugin revision. The validator checks both agent manifests, the Claude Code marketplace entry, the Skill entrypoint/metadata, required Folio resources and starter-prompt constraints. Claude Code authors can also run `claude plugin validate .` from the repository root.
 
 The standalone Folio Skill is additionally validated and packaged with the OpenAI Skill Creator tooling.
 

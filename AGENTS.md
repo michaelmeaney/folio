@@ -4,12 +4,12 @@ Folio is a model-independent presentation-engineering harness packaged as a Code
 
 ## Project map
 
-- `.codex-plugin/plugin.json` defines the plugin package.
+- `.codex-plugin/plugin.json` defines Codex packaging; `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` define Claude Code packaging.
 - `skills/folio/SKILL.md` is the agent-facing contract. Read the relevant references before changing mode selection, reconstruction, design-system resolution or acceptance behaviour.
 - `design-systems/` contains registered systems, including Lumen; follow each `system.json` for its declared resources.
 - `components/`, `catalogue/` and `examples/` contain the shared semantics, discovery material and reviewed examples.
 - `docs/` records plugin decisions and implementation evidence.
-- `scripts/validate_plugin.py` checks packaging and resource consistency.
+- `scripts/validate_plugin.py` checks both agent packages and resource consistency.
 
 ## Working rules
 

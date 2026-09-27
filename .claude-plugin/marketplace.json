@@ -1,0 +1,12 @@
+{
+  "name": "folio",
+  "owner": {
+    "name": "Michael Meaney"
+  },
+  "plugins": [
+    {
+      "name": "folio",
+      "source": "./"
+    }
+  ]
+}

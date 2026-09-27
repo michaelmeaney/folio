@@ -1,0 +1,18 @@
+{
+  "name": "folio",
+  "displayName": "Folio",
+  "description": "Create editable PowerPoint presentations from references, briefs, and governed design systems.",
+  "author": {
+    "name": "Michael Meaney",
+    "url": "https://github.com/michaelmeaney"
+  },
+  "homepage": "https://github.com/michaelmeaney/folio",
+  "repository": "https://github.com/michaelmeaney/folio",
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "presentations",
+    "powerpoint",
+    "design-systems",
+    "multimodal"
+  ]
+}
