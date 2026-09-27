@@ -60,11 +60,9 @@ Internally, Folio currently expresses that progression through three execution p
 
 These are execution semantics, not prerequisites a new user must learn before using Folio. The public experience should favour the simplest path that satisfies the request and progressively disclose the deeper controls.
 
-In Governed execution, design authority resolves in this order:
+Before presentation generation, Folio plays back the interpreted transformation and obtains confirmation. For reference-image work, the primary choice is **Convert** (preserve the reference design) or **Redesign** (recompose it using a design system).
 
-1. user-supplied organisational design-system or brand resources, complete or partial;
-2. a user-named installed Folio design system;
-3. Lumen when governance is requested without another supplied or named system.
+For Governed execution, the user explicitly selects either an installed Folio design system or supplies an alternative design-system repository/link. Folio does not silently choose Lumen or another system.
 
 ## What Folio provides
 
@@ -171,31 +169,16 @@ This creates a natural evaluation boundary. The same presentation task, design s
 ```text
 folio/
 ├── .codex-plugin/
-│   └── plugin.json
-├── skills/
-│   └── folio/
-│       ├── SKILL.md
-│       ├── agents/
-│       │   └── openai.yaml
-│       └── references/
+├── skills/folio/
 ├── design-systems/
-│   └── lumen/
-│       ├── DESIGN.md
-│       ├── tokens.json
-│       ├── system.json
-│       ├── archetypes/
-│       ├── components/
-│       ├── prompts/
-│       └── catalogue/
 ├── components/
-│   └── shared/
 ├── examples/
 ├── docs/
 ├── scripts/
 └── catalogue/
 ```
 
-This repository contains the Folio plugin and its canonical design systems, components, examples and validation tooling. The plugin is designed to evolve towards independently pluggable design systems, component providers, agent adapters and renderers while keeping Folio Core model-independent.
+This repository contains the Folio plugin and its canonical design systems, components, examples and validation tooling. It is designed to evolve towards independently pluggable design systems, component providers, agent adapters and renderers while keeping Folio Core model-independent.
 
 ## Plugin and Skill packaging
 
@@ -269,6 +252,14 @@ Ideate → Create & refine → Decompose → Assemble → Reveal → Design syst
 **GitHub is canonical.** Design rules, tokens, prompts, archetypes, vector components, metadata, catalogues and reference implementations belong here.
 
 Reviewed `.pptx` files and preview images may additionally be published to Google Drive for convenient human consumption.
+
+## Model compatibility and execution reliability
+
+Folio is model-independent as a harness, but individual models must be verified against the complete presentation workflow before compatibility is claimed.
+
+Compatibility is tracked by **model, reasoning effort, execution surface and Folio workflow**. In ChatGPT Chat, **GPT-6 Astra at Medium reasoning** is currently verified; **GPT-6 Luna** and **GPT-6 Sol** remain test-required. **ChatGPT Work is currently test-required across the listed models**. Context pressure is also tested independently because a clean execution and a heavily loaded conversation can produce materially different workflow reliability.
+
+See [Model compatibility](docs/implementation/implementation-001-model-compatibility.md) for the test matrix and [Troubleshooting and Q&A](docs/implementation/runbook-001-folio-execution-troubleshooting.md) for known operational failure modes, including context exhaustion and when to start presentation execution in a fresh chat.
 
 ## Validation
 

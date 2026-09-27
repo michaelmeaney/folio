@@ -1,0 +1,9 @@
+{
+  "id": "mosaic",
+  "name": "Mosaic",
+  "version": "0.1.0",
+  "description": "Modular, approachable presentation system inspired by modern productivity software: clear hierarchy, adaptive regions, semantic colour and restrained depth.",
+  "design": "DESIGN.md",
+  "tokens": "tokens.json",
+  "sharedComponentRegistry": "../../components/shared/registry.json"
+}
