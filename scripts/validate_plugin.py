@@ -110,6 +110,13 @@ def validate(root: Path) -> list[str]:
     marketplace_path = root / ".claude-plugin" / "marketplace.json"
     marketplace = load_json(marketplace_path, errors)
     if marketplace is not None:
+        if (
+            not isinstance(marketplace.get("description"), str)
+            or not marketplace["description"].strip()
+        ):
+            errors.append(
+                "Claude Code marketplace.json description must be a non-empty string"
+            )
         marketplace_plugins = marketplace.get("plugins")
         if not isinstance(marketplace_plugins, list):
             errors.append("Claude Code marketplace.json plugins must be an array")

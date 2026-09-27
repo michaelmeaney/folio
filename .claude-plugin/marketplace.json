@@ -1,5 +1,6 @@
 {
   "name": "folio",
+  "description": "Folio workflows for creating editable PowerPoint presentations with governed design systems.",
   "owner": {
     "name": "Michael Meaney"
   },
