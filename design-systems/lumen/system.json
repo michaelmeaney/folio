@@ -1,8 +1,22 @@
 {
+  "schemaVersion": "0.1.0",
+  "kind": "design-system",
   "id": "lumen",
   "name": "Lumen",
   "version": "0.1.0",
   "description": "Minimal modern editorial presentation system with strong typography, generous whitespace, restrained vector graphics and soft atmospheric depth.",
+  "tokenFormat": {
+    "name": "dtcg",
+    "version": "2025.10"
+  },
+  "resources": {
+    "design": "DESIGN.md",
+    "tokens": [
+      "tokens/core.tokens.json"
+    ],
+    "presentation": "presentation.json",
+    "archetypes": "archetypes/"
+  },
   "design": "DESIGN.md",
   "tokens": "tokens.json",
   "archetypes": "archetypes/",

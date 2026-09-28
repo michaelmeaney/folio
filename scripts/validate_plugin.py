@@ -27,6 +27,9 @@ REQUIRED_RESOURCES = [
     "design-systems/lumen/system.json",
     "design-systems/lumen/DESIGN.md",
     "design-systems/lumen/tokens.json",
+    "design-systems/lumen/tokens/core.tokens.json",
+    "design-systems/lumen/presentation.json",
+    "schemas/folio-0.1.0.schema.json",
     "design-systems/lumen/components/registry.json",
     "design-systems/lumen/prompts/visual-generation.md",
     "design-systems/lumen/prompts/reconstruction.md",
@@ -216,6 +219,30 @@ def validate(root: Path) -> list[str]:
                     )
 
                 system_root = system_manifest_path.parent
+                if system.get("schemaVersion") == "0.1.0":
+                    if system.get("kind") != "design-system" or system.get("tokenFormat") != {"name": "dtcg", "version": "2025.10"}:
+                        errors.append(f"{system_id} has invalid schema metadata")
+                    resources = system.get("resources")
+                    if not isinstance(resources, dict):
+                        errors.append(f"{system_id} must declare schema resources")
+                    else:
+                        for key in ("tokens", "presentation"):
+                            if key not in resources:
+                                errors.append(f"{system_id} missing schema resource {key}")
+                        for key, value in resources.items():
+                            if key == "tokens" and not isinstance(value, list):
+                                errors.append(f"{system_id} schema tokens must be a list")
+                                continue
+                            values = value if key == "tokens" and isinstance(value, list) else [value]
+                            if not values or any(
+                                not isinstance(rel, str)
+                                or not rel.strip()
+                                or Path(rel).is_absolute()
+                                or not (system_root / rel).resolve().is_relative_to(system_root.resolve())
+                                or not ((system_root / rel).is_dir() if key == "archetypes" else (system_root / rel).is_file())
+                                for rel in values
+                            ):
+                                errors.append(f"{system_id} schema resource {key!r} is missing or outside package")
                 for field in ("design", "tokens"):
                     rel = system.get(field)
                     if (

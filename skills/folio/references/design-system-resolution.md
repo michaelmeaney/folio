@@ -50,6 +50,10 @@ When present in a plugin installation, load `../../design-systems/registry.json`
 
 Treat the selected system manifest as authoritative for all further resource discovery.
 
+For a manifest with `schemaVersion: 0.1.0`, use `resources.tokens` as the canonical DTCG token source and `resources.presentation` for canvas, grid, safe areas and layer behaviour. Resolve token references before applying them. The legacy top-level `tokens` field remains for older installations; do not merge it into the schema token context or treat it as an additional authority. If the schema resources are missing or invalid, report that failure rather than silently using the legacy file.
+
+Retrieve only the resolved tokens needed for the selected components and layout. When the optional schema validator is available, `scripts/folio_schema.py <system-directory> --show-tokens <token-name> ...` returns values with relative source paths. Keep the complete resolved context for rendering and validation; a short agent prompt is not permission to omit design rules.
+
 Resolve each manifest-declared path relative to the system directory unless the manifest explicitly points elsewhere. Load only resource categories present in the manifest. Do not assume another system uses Lumen's filenames, directories, or optional categories.
 
 Typical manifest fields may identify:

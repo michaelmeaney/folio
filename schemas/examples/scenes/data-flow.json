@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "0.1.0", "kind": "scene", "id": "customer-data-flow-scene",
+  "compositionRef": "../compositions/data-flow.json",
+  "canvas": {"width": 1280, "height": 720, "unit": "px"},
+  "objects": [
+    {"id": "customer-records-label", "semanticRef": "customer-records", "type": "text", "contentRef": "#/source/label", "frame": {"x": 120, "y": 320, "width": 220, "height": 50}, "layer": "text", "style": {"typography": {"token": "typography.body"}}},
+    {"id": "analytics-store-label", "semanticRef": "analytics-store", "type": "text", "contentRef": "#/destination/label", "frame": {"x": 900, "y": 320, "width": 220, "height": 50}, "layer": "text", "style": {"typography": {"token": "typography.body"}}},
+    {"id": "data-flow-connector", "type": "connector", "source": "customer-records", "target": "analytics-store", "frame": {"x": 340, "y": 340, "width": 560, "height": 1}, "layer": "visual"}
+  ],
+  "readingOrder": ["customer-records-label", "analytics-store-label"]
+}

@@ -5,5 +5,18 @@
   "description": "Modular, approachable presentation system inspired by modern productivity software: clear hierarchy, adaptive regions, semantic colour and restrained depth.",
   "design": "DESIGN.md",
   "tokens": "tokens.json",
-  "sharedComponentRegistry": "../../components/shared/registry.json"
+  "sharedComponentRegistry": "../../components/shared/registry.json",
+  "schemaVersion": "0.1.0",
+  "kind": "design-system",
+  "tokenFormat": {
+    "name": "dtcg",
+    "version": "2025.10"
+  },
+  "resources": {
+    "design": "DESIGN.md",
+    "tokens": [
+      "tokens/core.tokens.json"
+    ],
+    "presentation": "presentation.json"
+  }
 }

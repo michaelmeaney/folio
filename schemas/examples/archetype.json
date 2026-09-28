@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "0.1.0", "kind": "archetype", "id": "architecture", "version": "0.1.0",
+  "name": "Architecture", "description": "Dominant technical composition with a title",
+  "regions": {
+    "title": {"role": "heading", "accepts": ["text"], "minItems": 1, "maxItems": 1},
+    "visual": {"role": "composition", "accepts": ["composition"], "minItems": 1, "maxItems": 1}
+  },
+  "layout": {"visualPriority": "dominant", "respectSafeArea": true}
+}

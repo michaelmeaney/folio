@@ -5,5 +5,18 @@
   "description": "Technical systems presentation language built around visible structure, strong grids, neutral typography, precise diagrams and evidence-led data visualisation.",
   "design": "DESIGN.md",
   "tokens": "tokens.json",
-  "sharedComponentRegistry": "../../components/shared/registry.json"
+  "sharedComponentRegistry": "../../components/shared/registry.json",
+  "schemaVersion": "0.1.0",
+  "kind": "design-system",
+  "tokenFormat": {
+    "name": "dtcg",
+    "version": "2025.10"
+  },
+  "resources": {
+    "design": "DESIGN.md",
+    "tokens": [
+      "tokens/core.tokens.json"
+    ],
+    "presentation": "presentation.json"
+  }
 }

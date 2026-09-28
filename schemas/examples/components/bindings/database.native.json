@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "0.1.0", "kind": "renderer-binding", "id": "core.database.native", "version": "0.1.0",
+  "component": "infrastructure.database", "componentVersion": "0.1.0", "target": "powerpoint",
+  "representation": "native-group", "source": "../scenes/database.scene.json",
+  "anchors": {"input": {"x": 0, "y": 0.5}, "output": {"x": 1, "y": 0.5}},
+  "capabilities": {"editText": true, "editGeometry": true, "recolour": true, "resize": "uniform", "attachConnectors": true, "editData": false}
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "0.1.0", "kind": "pattern", "id": "infrastructure.data-flow", "version": "0.1.0",
+  "name": "Data flow", "description": "Two data stores joined by a directed relationship",
+  "slots": {
+    "source": {"accepts": ["component"], "minItems": 1, "maxItems": 1},
+    "destination": {"accepts": ["component"], "minItems": 1, "maxItems": 1}
+  },
+  "relationships": [{"from": "source", "to": "destination", "type": "flow", "direction": "forward"}],
+  "layout": {"strategy": "constraint", "constraints": [
+    {"op": "row", "slots": ["source", "destination"], "strength": "required"},
+    {"op": "gap", "slots": ["source", "destination"], "value": {"token": "spacing.gutter"}, "strength": "preferred"}
+  ]}
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "0.1.0",
+  "kind": "presentation-profile",
+  "id": "meridian.wide",
+  "canvas": {
+    "width": 1279.968,
+    "height": 720.0,
+    "unit": "px"
+  },
+  "units": {
+    "pixelsPerInch": 96,
+    "pointsPerInch": 72,
+    "rootFontSizePx": 16
+  },
+  "grid": {
+    "columns": 12,
+    "gutter": {
+      "token": "spacing.gutter"
+    }
+  },
+  "safeArea": {
+    "left": {
+      "token": "spacing.safeArea.left"
+    },
+    "right": {
+      "token": "spacing.safeArea.right"
+    },
+    "top": {
+      "token": "spacing.safeArea.top"
+    },
+    "bottom": {
+      "token": "spacing.safeArea.bottom"
+    }
+  },
+  "layers": {},
+  "textOverflow": {
+    "allowTruncation": false,
+    "allowUnapprovedRewrite": false
+  },
+  "extensions": {
+    "io.github.michaelmeaney.folio": {
+      "legacyVersion": "0.1.0",
+      "legacyCanvasRatio": "16:9"
+    }
+  }
+}

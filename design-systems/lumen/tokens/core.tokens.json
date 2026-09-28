@@ -1,0 +1,713 @@
+{
+  "color": {
+    "background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9803921568627451,
+          0.984313725490196,
+          0.9882352941176471
+        ],
+        "hex": "#FAFBFC"
+      }
+    },
+    "backgroundAlt": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9607843137254902,
+          0.9686274509803922,
+          0.9803921568627451
+        ],
+        "hex": "#F5F7FA"
+      }
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.29411764705882354,
+          0.3333333333333333,
+          0.42745098039215684
+        ],
+        "hex": "#4B556D"
+      }
+    },
+    "foregroundStrong": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.21568627450980393,
+          0.2549019607843137,
+          0.3176470588235294
+        ],
+        "hex": "#374151"
+      }
+    },
+    "foregroundMuted": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5411764705882353,
+          0.5764705882352941,
+          0.6470588235294118
+        ],
+        "hex": "#8A93A5"
+      }
+    },
+    "foregroundFaint": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7725490196078432,
+          0.792156862745098,
+          0.8313725490196079
+        ],
+        "hex": "#C5CAD4"
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8823529411764706,
+          0.8980392156862745,
+          0.9215686274509803
+        ],
+        "hex": "#E1E5EB"
+      }
+    },
+    "primary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4627450980392157,
+          0.3411764705882353,
+          0.9098039215686274
+        ],
+        "hex": "#7657E8"
+      }
+    },
+    "primaryLight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7215686274509804,
+          0.6549019607843137,
+          1.0
+        ],
+        "hex": "#B8A7FF"
+      }
+    },
+    "primaryWash": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9333333333333333,
+          0.9176470588235294,
+          0.996078431372549
+        ],
+        "hex": "#EEEAFE"
+      }
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.20784313725490197,
+          0.8274509803921568,
+          0.6039215686274509
+        ],
+        "hex": "#35D39A"
+      }
+    },
+    "secondaryLight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5686274509803921,
+          0.9294117647058824,
+          0.8
+        ],
+        "hex": "#91EDCC"
+      }
+    },
+    "secondaryWash": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9058823529411765,
+          0.9803921568627451,
+          0.9529411764705882
+        ],
+        "hex": "#E7FAF3"
+      }
+    },
+    "blue": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3568627450980392,
+          0.5529411764705883,
+          0.9372549019607843
+        ],
+        "hex": "#5B8DEF"
+      }
+    },
+    "blueWash": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9176470588235294,
+          0.9450980392156862,
+          0.9921568627450981
+        ],
+        "hex": "#EAF1FD"
+      }
+    },
+    "pink": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8431372549019608,
+          0.4196078431372549,
+          0.8470588235294118
+        ],
+        "hex": "#D76BD8"
+      }
+    },
+    "pinkWash": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9725490196078431,
+          0.9176470588235294,
+          0.9725490196078431
+        ],
+        "hex": "#F8EAF8"
+      }
+    },
+    "orange": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9490196078431372,
+          0.6039215686274509,
+          0.3568627450980392
+        ],
+        "hex": "#F29A5B"
+      }
+    },
+    "orangeWash": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9921568627450981,
+          0.9411764705882353,
+          0.9058823529411765
+        ],
+        "hex": "#FDF0E7"
+      }
+    },
+    "success": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.20784313725490197,
+          0.6627450980392157,
+          0.47058823529411764
+        ],
+        "hex": "#35A978"
+      }
+    },
+    "warning": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8901960784313725,
+          0.6039215686274509,
+          0.23137254901960785
+        ],
+        "hex": "#E39A3B"
+      }
+    },
+    "danger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8509803921568627,
+          0.3607843137254902,
+          0.3607843137254902
+        ],
+        "hex": "#D95C5C"
+      }
+    }
+  },
+  "font": {
+    "primary": {
+      "$type": "fontFamily",
+      "$value": [
+        "Inter",
+        "Aptos",
+        "Arial"
+      ]
+    }
+  },
+  "typography": {
+    "display": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 72.0,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.0740740740740742
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 54,
+          "legacyLineHeightPt": 58
+        }
+      }
+    },
+    "h1": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 53.333333333333336,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.1
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 40,
+          "legacyLineHeightPt": 44
+        }
+      }
+    },
+    "h2": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 40.0,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.1333333333333333
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 30,
+          "legacyLineHeightPt": 34
+        }
+      }
+    },
+    "h3": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 29.333333333333332,
+          "unit": "px"
+        },
+        "fontWeight": 600,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.1818181818181819
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 22,
+          "legacyLineHeightPt": 26
+        }
+      }
+    },
+    "bodyLg": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 26.666666666666668,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.4
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 20,
+          "legacyLineHeightPt": 28
+        }
+      }
+    },
+    "body": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 22.666666666666668,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.411764705882353
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 17,
+          "legacyLineHeightPt": 24
+        }
+      }
+    },
+    "bodySm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 18.666666666666668,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.3571428571428572
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 14,
+          "legacyLineHeightPt": 19
+        }
+      }
+    },
+    "caption": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 14.666666666666666,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.3636363636363635
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 11,
+          "legacyLineHeightPt": 15
+        }
+      }
+    },
+    "label": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.primary}",
+        "fontSize": {
+          "value": 16.0,
+          "unit": "px"
+        },
+        "fontWeight": 600,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.3333333333333333
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacySizePt": 12,
+          "legacyLineHeightPt": 16
+        }
+      }
+    }
+  },
+  "spacing": {
+    "safeArea": {
+      "left": {
+        "$type": "dimension",
+        "$value": {
+          "value": 72.0,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.75,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "right": {
+        "$type": "dimension",
+        "$value": {
+          "value": 72.0,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.75,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "top": {
+        "$type": "dimension",
+        "$value": {
+          "value": 52.800000000000004,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.55,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "bottom": {
+        "$type": "dimension",
+        "$value": {
+          "value": 48.0,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.5,
+            "legacyUnit": "in"
+          }
+        }
+      }
+    },
+    "gutter": {
+      "$type": "dimension",
+      "$value": {
+        "value": 19.200000000000003,
+        "unit": "px"
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacyValue": 0.2,
+          "legacyUnit": "in"
+        }
+      }
+    },
+    "scale": {
+      "step01": {
+        "$type": "dimension",
+        "$value": {
+          "value": 9.600000000000001,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.1,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "step02": {
+        "$type": "dimension",
+        "$value": {
+          "value": 19.200000000000003,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.2,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "step03": {
+        "$type": "dimension",
+        "$value": {
+          "value": 28.799999999999997,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.3,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "step04": {
+        "$type": "dimension",
+        "$value": {
+          "value": 38.400000000000006,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.4,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "step05": {
+        "$type": "dimension",
+        "$value": {
+          "value": 57.599999999999994,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.6,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "step06": {
+        "$type": "dimension",
+        "$value": {
+          "value": 76.80000000000001,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 0.8,
+            "legacyUnit": "in"
+          }
+        }
+      },
+      "step07": {
+        "$type": "dimension",
+        "$value": {
+          "value": 115.19999999999999,
+          "unit": "px"
+        },
+        "$extensions": {
+          "io.github.michaelmeaney.folio": {
+            "legacyValue": 1.2,
+            "legacyUnit": "in"
+          }
+        }
+      }
+    }
+  },
+  "semantic": {
+    "canvas": {
+      "$type": "color",
+      "$value": "{color.background}"
+    },
+    "text": {
+      "$type": "color",
+      "$value": "{color.foreground}"
+    },
+    "mutedText": {
+      "$type": "color",
+      "$value": "{color.foregroundMuted}"
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{color.primary}"
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "{color.success}"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.warning}"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "{color.danger}"
+      }
+    }
+  },
+  "line": {
+    "standard": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.6666666666666665,
+        "unit": "px"
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacyValue": 1.25,
+          "legacyUnit": "pt"
+        }
+      }
+    },
+    "connector": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2.0,
+        "unit": "px"
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacyValue": 1.5,
+          "legacyUnit": "pt"
+        }
+      }
+    },
+    "iconStroke": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2.0,
+        "unit": "px"
+      },
+      "$extensions": {
+        "io.github.michaelmeaney.folio": {
+          "legacyValue": 1.5,
+          "legacyUnit": "pt"
+        }
+      }
+    }
+  }
+}
