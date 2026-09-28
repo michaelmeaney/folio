@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the Folio Codex plugin package using only the Python standard library."""
+"""Validate Folio's Codex and Claude Code plugin packages."""
 from __future__ import annotations
 
 import argparse
@@ -9,6 +9,7 @@ from pathlib import Path
 
 SEMVER = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$")
 PLUGIN_NAME = re.compile(r"^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*$")
+CLAUDE_PLUGIN_NAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
 
 ALLOWED_TOP = {
@@ -80,6 +81,56 @@ def skill_frontmatter(path: Path, errors: list[str]):
 
 def validate(root: Path) -> list[str]:
     errors: list[str] = []
+    claude_manifest_path = root / ".claude-plugin" / "plugin.json"
+    claude_manifest = load_json(claude_manifest_path, errors)
+    if claude_manifest is not None:
+        claude_name = claude_manifest.get("name")
+        if (
+            not isinstance(claude_name, str)
+            or not CLAUDE_PLUGIN_NAME.fullmatch(claude_name)
+        ):
+            errors.append("Claude Code plugin.json name must be kebab-case")
+        if claude_name != "folio":
+            errors.append(
+                "Claude Code plugin.json name must match the Folio package name 'folio'"
+            )
+        for key in ("description", "homepage", "repository"):
+            if (
+                not isinstance(claude_manifest.get(key), str)
+                or not claude_manifest[key].strip()
+            ):
+                errors.append(
+                    f"Claude Code plugin.json field {key!r} must be a non-empty string"
+                )
+        author = claude_manifest.get("author")
+        if (
+            not isinstance(author, dict)
+            or not isinstance(author.get("name"), str)
+            or not author["name"].strip()
+        ):
+            errors.append("Claude Code plugin.json author.name is required")
+
+    marketplace_path = root / ".claude-plugin" / "marketplace.json"
+    marketplace = load_json(marketplace_path, errors)
+    if marketplace is not None:
+        if (
+            not isinstance(marketplace.get("description"), str)
+            or not marketplace["description"].strip()
+        ):
+            errors.append(
+                "Claude Code marketplace.json description must be a non-empty string"
+            )
+        marketplace_plugins = marketplace.get("plugins")
+        if not isinstance(marketplace_plugins, list):
+            errors.append("Claude Code marketplace.json plugins must be an array")
+        elif not any(
+            isinstance(entry, dict)
+            and entry.get("name") == "folio"
+            and entry.get("source") == "./"
+            for entry in marketplace_plugins
+        ):
+            errors.append("Claude Code marketplace.json must list Folio with source './'")
+
     manifest_path = root / ".codex-plugin" / "plugin.json"
     manifest = load_json(manifest_path, errors)
     if manifest is None:
