@@ -90,6 +90,8 @@ For installed Folio systems, use `../../design-systems/registry.json` when it is
 
 Treat that manifest as authoritative for all further resource discovery. Resolve only paths and resource categories declared by the manifest, relative to the system directory unless the manifest explicitly points elsewhere. Do not assume Lumen filenames, directories, or optional resources for another system.
 
+When the selected manifest declares `schemaVersion: 0.1.0`, use `resources.tokens` as its canonical DTCG token source and `resources.presentation` for presentation rules. Top-level `tokens` is a compatibility path for older consumers, not a second token source. Resolve references and report invalid or missing values before claiming governed compliance.
+
 When declared by the manifest, load resources such as:
 - design guidance;
 - tokens;

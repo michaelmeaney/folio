@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "0.1.0", "kind": "scene", "id": "database-symbol",
+  "canvas": {"width": 200, "height": 120, "unit": "px"},
+  "objects": [
+    {"id": "database-body", "type": "shape", "frame": {"x": 10, "y": 10, "width": 180, "height": 100}, "layer": "visual", "style": {"fill": {"token": "color.primary"}}},
+    {"id": "database-label", "type": "text", "frame": {"x": 20, "y": 45, "width": 160, "height": 40}, "layer": "text", "contentRef": "#/properties/label", "style": {"typography": {"token": "typography.body"}}}
+  ],
+  "readingOrder": ["database-label"]
+}

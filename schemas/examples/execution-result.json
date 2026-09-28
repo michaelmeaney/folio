@@ -1,0 +1,5 @@
+{
+  "schemaVersion": "0.1.0", "kind": "execution-result", "runId": "data-flow-run",
+  "status": "failed", "artefacts": {}, "budget": {"repairRoundsUsed": 0, "repairRoundsLimit": 3},
+  "stopReason": "example-only-no-renderer", "unresolved": []
+}

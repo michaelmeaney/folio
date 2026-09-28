@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "0.1.0", "kind": "composition", "id": "customer-data-flow",
+  "pattern": {"id": "infrastructure.data-flow", "version": "0.1.0"},
+  "bindings": {
+    "source": {"id": "customer-records", "component": "infrastructure.database", "properties": {"label": "Customer records"}},
+    "destination": {"id": "analytics-store", "component": "infrastructure.database", "properties": {"label": "Analytics store"}}
+  }
+}

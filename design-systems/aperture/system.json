@@ -5,5 +5,18 @@
   "description": "Precision-minimal presentation system inspired by premium industrial and digital product communication: content-first, cinematic whitespace, disciplined typography and restrained colour.",
   "design": "DESIGN.md",
   "tokens": "tokens.json",
-  "sharedComponentRegistry": "../../components/shared/registry.json"
+  "sharedComponentRegistry": "../../components/shared/registry.json",
+  "schemaVersion": "0.1.0",
+  "kind": "design-system",
+  "tokenFormat": {
+    "name": "dtcg",
+    "version": "2025.10"
+  },
+  "resources": {
+    "design": "DESIGN.md",
+    "tokens": [
+      "tokens/core.tokens.json"
+    ],
+    "presentation": "presentation.json"
+  }
 }

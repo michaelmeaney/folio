@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1.0", "kind": "component", "id": "infrastructure.database", "version": "0.1.0",
+  "name": "Database", "description": "A persistent data store", "tags": ["database", "persistence"],
+  "propertiesSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object", "required": ["label"], "additionalProperties": false,
+    "properties": {"label": {"type": "string", "minLength": 1, "maxLength": 120}}
+  },
+  "slots": {"label": {"accepts": ["text"], "minItems": 1, "maxItems": 1, "contentFrom": {"property": "label"}}},
+  "anchors": {"input": {"role": "input"}, "output": {"role": "output"}},
+  "bindings": ["bindings/database.native.json"]
+}

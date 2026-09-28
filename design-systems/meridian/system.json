@@ -5,5 +5,18 @@
   "description": "Executive editorial system for strategy, evidence and board-level narratives: high contrast, rigorous hierarchy, annotated charts and disciplined information density.",
   "design": "DESIGN.md",
   "tokens": "tokens.json",
-  "sharedComponentRegistry": "../../components/shared/registry.json"
+  "sharedComponentRegistry": "../../components/shared/registry.json",
+  "schemaVersion": "0.1.0",
+  "kind": "design-system",
+  "tokenFormat": {
+    "name": "dtcg",
+    "version": "2025.10"
+  },
+  "resources": {
+    "design": "DESIGN.md",
+    "tokens": [
+      "tokens/core.tokens.json"
+    ],
+    "presentation": "presentation.json"
+  }
 }
