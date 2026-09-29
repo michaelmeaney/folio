@@ -1,6 +1,6 @@
 # Folio capability modes
 
-Folio exposes progressive capability rather than requiring a design system for every task.
+Folio exposes progressive capability. Convert, Restyle and Redesign are transformation intents independent of these modes; see `composition-contract.md`. A reference plus a named system defaults to Governed Restyle. Redesign may be Guided or Governed.
 
 ## Quick
 
@@ -43,9 +43,9 @@ For reference-free Guided work, derive a local style contract directly from the 
 
 Use when the user explicitly requests a Folio design system, names Lumen, supplies an organisational design system, or asks for governed/reusable/brand-controlled output.
 
-Design authority: the active design system, whether supplied by the user or installed with Folio. Supplied references act as composition/content evidence unless the active system says otherwise.
+Authority is assigned by concern. For Restyle, the reference controls content, relationships and composition; the selected system controls visual treatment. Mandatory system constraints that conflict with protected composition require a specific exception or permission to redesign. Default archetypes and density preferences cannot override the reference.
 
-Before Governed execution, explicitly ask the user to select the design-system source:
+Use the system already named or supplied. Only when no system is selected, ask the user to choose:
 1. one of the installed Folio systems from the canonical registry; or
 2. an alternative design system supplied by the user, including a repository link.
 

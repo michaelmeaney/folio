@@ -1,6 +1,19 @@
 # Folio acceptance criteria
 
-A reconstructed or generated deck is complete only when all criteria for the selected mode pass.
+A reconstructed or generated deck is complete only when every applicable gate passes. Gates do not compensate for one another.
+
+| Gate | Required evidence |
+| --- | --- |
+| Content and semantics | Source-to-output coverage, exact visible text unless rewriting is authorised, branch direction/labels and annotation associations |
+| Composition and hierarchy | Source/final comparison at whole-slide and detail scale; protected geometry, grouping, reading order and primary visual weight |
+| Design-system treatment | Registered tokens/components and mandatory constraints for Governed; local preferences or original treatment for Guided/Quick |
+| Artefact and editability | Actual PowerPoint open/render check and claimed editing operations in a named application/version |
+
+Record evidence references and a short list of material differences with authorisation for each. Check whether the same visual is dominant, the reading path remains intact, labels are proportionate and functional illustrations retain their role. Pixel similarity alone is unsuitable for Restyle.
+
+Use the versioned execution-result contract when schema tooling is available. Every gate is pass, fail or unverified; accepted requires all four passes with evidence. A missing mandatory host check makes output partial, even when the package and semantic validators pass. Record source/baseline hashes, Folio commit, selected system revision (or none), renderer identity and target application. A gate record is evidence bookkeeping, not proof that a claimed review actually happened.
+
+For attached connectors, inspect endpoint associations and test moving/resizing their components. An editable line is not an attached connector. A resizable SVG does not prove component geometry editing.
 
 ## All modes
 
@@ -11,7 +24,7 @@ A reconstructed or generated deck is complete only when all criteria for the sel
 - No text is clipped, overflowing, or unintentionally overlapping other content.
 - Raster imagery is used only where raster content is appropriate.
 - A rendered preview has been inspected for visual fidelity and obvious layout defects.
-- If a reference image is supplied, major composition, hierarchy, proportions, and visual rhythm are recognisably faithful to it unless redesign was explicitly requested.
+- If a reference image is supplied, major composition, hierarchy, proportions, and visual rhythm are recognisably faithful to it except for specific authorised deviations recorded in the composition contract. A Redesign request is not a blanket waiver.
 
 ## Quick mode
 

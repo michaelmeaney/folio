@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "0.2.0",
+  "kind": "execution-result",
+  "runId": "composition-contract-fixture",
+  "status": "partial",
+  "artefacts": {},
+  "budget": {
+    "repairRoundsUsed": 0,
+    "repairRoundsLimit": 3
+  },
+  "stopReason": "synthetic-contract-fixture-no-renderer-or-host-tests",
+  "unresolved": [
+    {
+      "reason": "No rendered deck or target-application editing evidence."
+    }
+  ],
+  "intent": {
+    "operation": "restyle",
+    "mode": "governed",
+    "designSystem": "lumen",
+    "permissions": {
+      "rewriteCopy": false,
+      "splitSlides": false,
+      "replacePrimaryVisual": false,
+      "recompose": false,
+      "consolidate": false,
+      "omitContent": false
+    }
+  },
+  "scenes": [
+    "scene.json"
+  ],
+  "provenance": {
+    "folioCommit": "cf7b504bf95e6d237d8af64e757a8aad04bf1a13",
+    "designSystemRevision": "lumen@0.1.0",
+    "renderer": "none:contract-fixture",
+    "sources": [
+      {
+        "path": "source.svg",
+        "sha256": "a9c3c183fd2ab41defded0f3966560048a5e0cb224be901d6d168ddc6cd9e6c2"
+      }
+    ]
+  },
+  "differences": [],
+  "gates": {
+    "content": {
+      "status": "unverified",
+      "summary": "Synthetic contract fixture; output review has not been performed.",
+      "evidence": []
+    },
+    "composition": {
+      "status": "unverified",
+      "summary": "Synthetic contract fixture; output review has not been performed.",
+      "evidence": []
+    },
+    "treatment": {
+      "status": "unverified",
+      "summary": "Synthetic contract fixture; output review has not been performed.",
+      "evidence": []
+    },
+    "artefact": {
+      "status": "unverified",
+      "summary": "Synthetic contract fixture; output review has not been performed.",
+      "evidence": []
+    }
+  },
+  "editingChecks": []
+}

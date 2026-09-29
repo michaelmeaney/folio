@@ -22,6 +22,7 @@ REQUIRED_INTERFACE = {
 }
 REQUIRED_RESOURCES = [
     "skills/folio/references/modes.md",
+    "skills/folio/references/composition-contract.md",
     "skills/folio/references/design-system-resolution.md",
     "components/shared/registry.json",
     "design-systems/registry.json",
@@ -31,6 +32,9 @@ REQUIRED_RESOURCES = [
     "design-systems/lumen/tokens/core.tokens.json",
     "design-systems/lumen/presentation.json",
     "schemas/folio-0.1.0.schema.json",
+    "schemas/folio-0.2.0.schema.json",
+    "scripts/folio_preservation.py",
+    "design-systems/lumen/archetypes/reference-constrained.yaml",
     "design-systems/lumen/components/registry.json",
     "design-systems/lumen/prompts/visual-generation.md",
     "design-systems/lumen/prompts/reconstruction.md",

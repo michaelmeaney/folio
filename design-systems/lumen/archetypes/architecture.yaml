@@ -5,5 +5,7 @@ rules:
   explicit_flow: true
   use_registered_components: true
   distinguish_primary_secondary_planes: true
-  split_when_density_exceeds_limit: true
+  split_when_density_exceeds_limit: false
+  split_when_new_composition_or_explicitly_permitted: true
+  preserve_reference_composition_for_restyle: true
   atmosphere_after_foreground: true

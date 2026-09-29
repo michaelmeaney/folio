@@ -4,34 +4,18 @@
 
 Before choosing the execution path, play back Folio's interpretation of the requested transformation and obtain user confirmation.
 
-For reference-image work:
-- **Convert** -> Quick: the reference is the design authority.
-- **Redesign** -> Governed: the selected design system is the design authority and the reference provides content/composition evidence.
-- Explicit lightweight adaptation -> Guided: the reference plus confirmed user preferences are the design authority.
-
-Do not begin presentation generation until this intent is confirmed. Do not load governed resources in Quick or Guided mode.
-
-For Governed work, explicitly ask the user to choose either an installed Folio design system from the canonical registry or an alternative design-system repository/link supplied by the user. Play back the selected system before composition.
+Choose Convert, Restyle or explicitly scoped Redesign independently of Quick, Guided or Governed. Confirm the intent, system/preferences, preservation scope and slide count together. Reuse an already selected system and already confirmed scope. Do not load governed resources in Quick or Guided mode.
 
 ## Reference-image path
 
-When the user supplies a reference image, treat it as a composition proposal and visual specification.
-
-1. Determine canvas ratio and safe-area behaviour.
-2. Identify the narrative purpose of each visible region.
-3. Extract the visual hierarchy: title, supporting copy, primary visual, secondary concepts, annotations, and atmosphere.
-4. Classify every visible element as one of:
-   - native text;
-   - native PowerPoint geometry;
-   - editable connector or line;
-   - reusable SVG/vector component;
-   - raster imagery that should remain raster;
-   - background atmosphere.
-5. In Quick mode, reconstruct directly from the reference.
-6. In Guided mode, apply only the user-provided preferences while preserving source composition unless the user explicitly requests redesign.
-7. In Governed mode, resolve the active design system first, then apply its available rules, components, archetypes and tokens.
-8. Reconstruct the foreground before decorative layers.
-9. Compare the rendered slide with the reference and iterate on geometry rather than flattening mismatched areas.
+1. Inspect the actual source before creating any output. Record its hash, dimensions and slide count.
+2. Create the composition contract described in `composition-contract.md`: regions and normalised geometry, grouping, whitespace, hierarchy, reading order, text, relationships, ambiguities and permissions. Freeze and hash this baseline before output generation.
+3. Resolve the selected mode's treatment resources and distinguish mandatory constraints from layout preferences. Surface conflicts with the baseline.
+4. Draft text-aware geometry inside the protected regions. Use realistic text measurements and representative visuals, including the dominant explanatory graphic. Choose an archetype only if it fits the contract.
+5. Classify elements into native text, shapes, lines/connectors, editable vector geometry, reusable SVG, intrinsic raster and decoration. Record the editing operations actually supported.
+6. Apply the requested treatment, reconstruct functional foreground first, and trace every source region and relationship to output objects. Preserve slide allocation and visible content unless explicitly authorised otherwise.
+7. Compare the source and final render at whole-slide and detail scale. Record material differences and their permission references, then repair affected objects and dependent connectors.
+8. Evaluate the four acceptance gates. Unperformed mandatory render or editing checks are unverified; return partial output rather than accepted output.
 
 ## Brief-to-deck path
 

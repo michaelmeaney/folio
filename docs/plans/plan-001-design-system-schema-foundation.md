@@ -5,7 +5,7 @@ status: draft
 number: "001"
 date: "2026-09-28"
 owner: folio-maintainers
-updated: "2026-09-28"
+updated: "2026-09-29"
 supersedes: null
 superseded_by: null
 related:
@@ -33,6 +33,17 @@ The first useful result is a **resolved Lumen token context** that retains its c
 - The shared and Lumen component registries contain no approved components. Existing archetype YAML and Skill instructions must be mapped before changing their resolution path.
 - The authoritative plugin checkout contains Aperture, Meridian, Mosaic, Gridline and Werk as well as Lumen. Their DTCG conversion can be checked structurally now; visual parity still needs rendered review for each system.
 - Quick and Guided retain their existing authority rules. The new package resolver applies to Governed work or an explicit developer contract request.
+
+## Composition preservation delivery
+
+[ADR 001](../architecture/adr-001-composition-preserving-transformations.md) and [implementation 003](../implementation/implementation-003-composition-preservation.md) refine phases 0 and 3 without introducing another scene model. The plugin implementation starts from current plugin main; conflicts in the separate archive checkout are unrelated.
+
+1. Align the Skill, mode/workflow/reconstruction/acceptance references, README and Lumen prompts around independent transformation intent and authority by concern. Remove legacy global design authority.
+2. Publish draft 0.2.0 contracts alongside readable 0.1.0 contracts. Freeze source analysis before output, map regions and relationships into scenes, and require evidence-backed acceptance. Migrate deliberately; never manufacture observations or passing evidence for old runs.
+3. Run synthetic preservation failures and authorised Redesign controls with the inexpensive contract tests in CI. Keep these distinct from visual and host editing verification.
+4. In a supported rendering environment, run [the composition regression procedure](../implementation/runbook-002-composition-regression.md) with a cleared source and reviewed target. Review whole-slide/detail fidelity and actual editing capabilities before promoting generated artefacts or claiming presentation-quality acceptance.
+
+Contract delivery is tracked independently from host evidence. The original failed example is not present as a cleared source/target/failed-output set, and no native renderer implementation is supplied by the schema work.
 
 ## Work sequence
 
@@ -73,9 +84,9 @@ The first useful result is a **resolved Lumen token context** that retains its c
 
 **Owner:** workflow and evaluation implementers. **Dependency:** phase 2.
 
-1. Capture supplied or generated visual targets in a visual-specification record separate from authoritative content and design rules. Map observations to semantic instances before assigning exact scene geometry.
+1. Capture supplied or generated visual targets in a 0.2.0 visual-specification record before output generation. Record authority by concern, source hashes, typed regions and relationships, hierarchy, uncertainty and explicit transformation permissions. Map each source region and relationship into the resolved scene and lock the baseline digest.
 2. Render, inspect and report object-level findings. Repair only affected scene objects and their dependent connectors; preserve already-correct content and instance IDs.
-3. Enforce declared candidate, repair, time and measurable cost limits. Return `accepted`, `partial`, `failed` or `cancelled` with produced artefacts, stop reason and gate evidence. A preview alone is not an accepted editable deck.
+3. Enforce declared candidate, repair, time and measurable cost limits. Return `accepted`, `partial`, `failed` or `cancelled` with produced artefacts, stop reason and evidence for all four independent gates. Accepted output needs source/final comparison and host editing checks; missing checks remain partial. A preview alone is not an accepted editable deck.
 
 **Exit:** direct composition and supplied-reference runs reach the same output contract. The optional generated-reference path is introduced only after its costs and failure modes can be measured. Exhausted budgets terminate with usable diagnostics.
 
