@@ -11,6 +11,9 @@ A reconstructed or generated deck is complete only when all criteria for the sel
 - No text is clipped, overflowing, or unintentionally overlapping other content.
 - Raster imagery is used only where raster content is appropriate.
 - A rendered preview has been inspected for visual fidelity and obvious layout defects.
+- Meaningful text remains legible: check its final colour, background, and opacity for at least 4.5:1 contrast, or 3:1 for large text. Do not rely on a token name as proof of contrast.
+- Boundaries and connectors needed to understand a diagram remain distinguishable from adjacent colours at 3:1 or better; do not rely on a slight fill change alone to define a meaningful region.
+- Meaning is not conveyed by colour alone. Check reading order and provide a text alternative for meaningful non-text content in the exported deck.
 - If a reference image is supplied, major composition, hierarchy, proportions, and visual rhythm are recognisably faithful to it unless redesign was explicitly requested.
 
 ## Quick mode

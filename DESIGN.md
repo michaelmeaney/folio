@@ -21,8 +21,9 @@ Dimensions: 13.333 x 7.5 in
 - Background alternate: `#F5F7FA`
 - Foreground: `#4B556D`
 - Foreground strong: `#374151`
-- Foreground muted: `#8A93A5`
-- Foreground faint: `#C5CAD4`
+- Foreground muted: `#626D80`
+- Foreground faint: `#656F81`
+- Functional border: `#818B9B`
 
 ### Primary
 - Primary: `#7657E8`
@@ -48,6 +49,8 @@ Dimensions: 13.333 x 7.5 in
 - Danger: `#D95C5C`
 
 Use the background token by default. Use foreground for body text and foreground-strong for dominant headings. Do not invent intermediate colours. Use at most two chromatic accent families on a normal slide.
+
+Meaningful text needs at least 4.5:1 against its final background, or 3:1 for large text. Keep essential shape boundaries and connectors at 3:1 against adjacent fills. Do not use light accents or washes as text on a light canvas or reduce the opacity of meaningful content. A pale fill alone is insufficient to define a functional box.
 
 ## Typography
 
@@ -98,7 +101,7 @@ Containers are exceptional. Prefer proximity and alignment.
 
 When required:
 - fill: transparent or background-alt;
-- border: `#E1E5EB`, 0.75 pt;
+- functional border: `#818B9B`, at least 0.75 pt;
 - corner radius: visually equivalent to 8 px;
 - no drop shadow by default.
 
@@ -150,7 +153,7 @@ Generated imagery is a reference artefact unless explicitly declared a final ass
 
 ## Progressive builds
 
-Maintain stable component positions across build slides. Do not redesign already introduced components. Reveal only what the current narrative stage requires. Earlier content may reduce to 40-60% opacity when focus moves. Restore the complete composition on the final reveal.
+Maintain stable component positions across build slides. Do not redesign already introduced components. Reveal only what the current narrative stage requires. Keep previously introduced meaningful text and diagram boundaries at their required contrast; de-emphasise with hierarchy or position rather than opacity. Restore the complete composition on the final reveal.
 
 ## Prohibited patterns
 
