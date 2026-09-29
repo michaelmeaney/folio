@@ -31,8 +31,9 @@ Explanatory diagrams, convergence paths, component relationships and visual meta
 - Background alternate: `#F5F7FA`
 - Foreground: `#4B556D`
 - Foreground strong: `#374151`
-- Foreground muted: `#8A93A5`
-- Foreground faint: `#C5CAD4`
+- Foreground muted: `#626D80`
+- Foreground faint: `#656F81`
+- Functional border: `#818B9B`
 
 ### Primary
 - Primary: `#7657E8`
@@ -58,6 +59,8 @@ Explanatory diagrams, convergence paths, component relationships and visual meta
 - Danger: `#D95C5C`
 
 Use the background token by default. Use foreground for body text and foreground-strong for dominant headings. Do not invent intermediate colours. Use at most two chromatic accent families on a normal slide.
+
+Keep meaningful text at 4.5:1 against its actual background, or 3:1 for large text. Muted and faint text tokens meet the normal-text threshold on the default and alternate backgrounds; do not lower their opacity. Light accent and wash tokens are for fills or decoration, not text on a light canvas. Keep essential shape boundaries and connectors at 3:1 against every adjacent fill. A pale panel fill alone does not establish a distinguishable box. Check final rendered colours when transparency, imagery or atmosphere changes the background.
 
 ## Typography
 
@@ -95,7 +98,7 @@ Standard line: foreground, 1.25 pt. Process connector: foreground, 1.5 pt, simpl
 
 ## Containers
 
-Containers are exceptional. Prefer proximity and alignment. When required use transparent/background-alt fill, `#E1E5EB` 0.75 pt border, visually equivalent 8 px radius, and no shadow by default.
+Containers are exceptional. Prefer proximity and alignment. When required use transparent/background-alt fill, the `#818B9B` functional border at no less than 0.75 pt, visually equivalent 8 px radius, and no shadow by default. The border, not the slight difference between the two pale fills, defines a meaningful container.
 
 ## Background atmosphere
 
@@ -118,7 +121,7 @@ Prefer abstract dimensional forms, simple geometry, diffused lighting, soft mate
 
 ## Progressive builds
 
-Maintain stable component positions across build slides. Do not redesign already introduced components. Reveal only what the current narrative stage requires. Earlier content may reduce to 40-60% opacity when focus moves. Restore the complete composition on the final reveal.
+Maintain stable component positions across build slides. Do not redesign already introduced components. Reveal only what the current narrative stage requires. Keep previously introduced meaningful text and diagram boundaries at their required contrast; de-emphasise with hierarchy or position rather than opacity. Restore the complete composition on the final reveal.
 
 ## Prohibited patterns
 
