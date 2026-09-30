@@ -1,0 +1,276 @@
+{
+  "id": "azure-architecture-review",
+  "file": "reference/Banner for Azure-Sample.png",
+  "sha256": "1bc485df92ec0a433d7ead58ca7c70d71dd1f47bc7222e3d6127ef8f02c52e57",
+  "width": 2000,
+  "height": 1116,
+  "sourceSlides": 1,
+  "title": "Streamline Your Design: The AI Architecture Review Agent",
+  "textBlocks": [
+    {
+      "id": "title",
+      "text": "Streamline Your Design: The AI Architecture Review Agent",
+      "minOccurrences": 1
+    },
+    {
+      "id": "pipeline-heading",
+      "text": "THE TRANSFORMATION PIPELINE",
+      "minOccurrences": 1
+    },
+    {
+      "id": "processing-heading",
+      "text": "DATA PROCESSING METHOD",
+      "minOccurrences": 1
+    },
+    {
+      "id": "outcomes-heading",
+      "text": "ACTIONABLE INSIGHTS & DEPLOYMENT",
+      "minOccurrences": 1
+    },
+    {
+      "id": "structured",
+      "text": "Structured (YAML/Markdown)",
+      "minOccurrences": 1
+    },
+    {
+      "id": "parser",
+      "text": "High-speed Rule-Based Parser",
+      "minOccurrences": 1
+    },
+    {
+      "id": "unstructured",
+      "text": "Unstructured (Text/Notes/Code)",
+      "minOccurrences": 1
+    },
+    {
+      "id": "inference-method",
+      "text": "Azure OpenAI (GPT-4) Inference",
+      "minOccurrences": 1
+    },
+    {
+      "id": "existing",
+      "text": "Existing Diagrams",
+      "minOccurrences": 1
+    },
+    {
+      "id": "rendering",
+      "text": "Excalidraw MCP Rendering",
+      "minOccurrences": 1
+    },
+    {
+      "id": "input-title",
+      "text": "Smart Input Intelligence",
+      "minOccurrences": 1
+    },
+    {
+      "id": "input-copy",
+      "text": "Accepts plain English, YAML, Markdown, or meeting notes to infer system components.",
+      "minOccurrences": 1
+    },
+    {
+      "id": "inference-title",
+      "text": "AI-Powered Inference",
+      "minOccurrences": 1
+    },
+    {
+      "id": "inference-copy",
+      "text": "Leverages Azure OpenAI to identify dependencies and connections within unstructured architectural data.",
+      "minOccurrences": 1
+    },
+    {
+      "id": "diagram-title",
+      "text": "Interactive Excalidraw Diagrams",
+      "minOccurrences": 1
+    },
+    {
+      "id": "diagram-copy",
+      "text": "Generates editable visual maps instead of static images for immediate team collaboration.",
+      "minOccurrences": 1
+    },
+    {
+      "id": "risk-title",
+      "text": "Prioritized Risk Assessment",
+      "minOccurrences": 1
+    },
+    {
+      "id": "risk-copy",
+      "text": "Automatically flags single points of failure and security gaps by severity levels.",
+      "minOccurrences": 1
+    },
+    {
+      "id": "deployment-title",
+      "text": "Zero-Ops Microsoft Foundry Deployment",
+      "minOccurrences": 1
+    },
+    {
+      "id": "deployment-copy",
+      "text": "Scales from zero to five replicas automatically to optimize enterprise cloud costs.",
+      "minOccurrences": 1
+    },
+    {
+      "id": "publish-title",
+      "text": "Publish to Teams and Copilot",
+      "minOccurrences": 1
+    },
+    {
+      "id": "publish-copy",
+      "text": "Deploy agents directly into Microsoft 365 environments without writing additional code.",
+      "minOccurrences": 1
+    },
+    {
+      "id": "security-risk",
+      "text": "Security Risk: High",
+      "minOccurrences": 3
+    },
+    {
+      "id": "scalability-risk",
+      "text": "Scalability Risk: Medium",
+      "minOccurrences": 2
+    },
+    {
+      "id": "zero-replicas-label",
+      "text": "0",
+      "minOccurrences": 1
+    },
+    {
+      "id": "five-replicas-label",
+      "text": "5",
+      "minOccurrences": 1
+    }
+  ],
+  "facts": [
+    {
+      "id": "input-formats",
+      "statement": "Inputs include plain English, YAML, Markdown and meeting notes."
+    },
+    {
+      "id": "structured-route",
+      "statement": "Structured YAML/Markdown uses a high-speed rule-based parser."
+    },
+    {
+      "id": "unstructured-route",
+      "statement": "Unstructured text/notes/code uses Azure OpenAI (GPT-4) inference."
+    },
+    {
+      "id": "diagram-route",
+      "statement": "Existing diagrams use Excalidraw MCP rendering; this is distinct from inference."
+    },
+    {
+      "id": "dependencies",
+      "statement": "Azure OpenAI identifies dependencies and connections in unstructured architectural data."
+    },
+    {
+      "id": "editable-model",
+      "statement": "Interactive Excalidraw diagrams are editable visual maps for immediate team collaboration."
+    },
+    {
+      "id": "risk",
+      "statement": "Risk assessment flags single points of failure and security gaps by severity."
+    },
+    {
+      "id": "risk-labels",
+      "statement": "The source illustrates high security risk and medium scalability risk."
+    },
+    {
+      "id": "autoscale",
+      "statement": "Microsoft Foundry deployment scales automatically from zero to five replicas to optimise cloud costs."
+    },
+    {
+      "id": "collaboration",
+      "statement": "Agents publish to Teams and Copilot in Microsoft 365 without additional code."
+    },
+    {
+      "id": "branching",
+      "statement": "Risk assessment, deployment and publication are distinct outcomes associated with the architecture model; do not invent a mandatory serial dependency."
+    }
+  ],
+  "regions": [
+    {
+      "id": "title",
+      "frame": [
+        0.06,
+        0.04,
+        0.9,
+        0.09
+      ],
+      "role": "headline"
+    },
+    {
+      "id": "inputs",
+      "frame": [
+        0.025,
+        0.17,
+        0.17,
+        0.76
+      ],
+      "role": "input illustration and description"
+    },
+    {
+      "id": "processing",
+      "frame": [
+        0.22,
+        0.17,
+        0.35,
+        0.28
+      ],
+      "role": "three distinct processing bands"
+    },
+    {
+      "id": "inference",
+      "frame": [
+        0.22,
+        0.6,
+        0.18,
+        0.36
+      ],
+      "role": "inference illustration and description"
+    },
+    {
+      "id": "diagram",
+      "frame": [
+        0.41,
+        0.365,
+        0.23,
+        0.585
+      ],
+      "role": "dominant architecture canvas and description"
+    },
+    {
+      "id": "risk",
+      "frame": [
+        0.69,
+        0.17,
+        0.285,
+        0.4
+      ],
+      "role": "risk gauge, architecture, labels and description"
+    },
+    {
+      "id": "deployment",
+      "frame": [
+        0.69,
+        0.6,
+        0.285,
+        0.17
+      ],
+      "role": "cloud infrastructure, zero/five labels and description"
+    },
+    {
+      "id": "publication",
+      "frame": [
+        0.72,
+        0.8,
+        0.25,
+        0.145
+      ],
+      "role": "Teams and Copilot marks and description"
+    }
+  ],
+  "interpretationNotes": [
+    "Frames are approximate normalised reviewer guides; judge the rendered visual hierarchy, not bounding boxes alone.",
+    "Three processing bands visually converge on the architecture canvas. The broad white flows and risk dial are explanatory associations, not proof of technical protocols.",
+    "The small internal diagram has largely unlabelled geometry. Do not invent component names or infrastructure guarantees.",
+    "Source product claims are benchmark content, not independently verified current product documentation.",
+    "Text transcription is reviewer ground truth; generators receive the image, not this answer key."
+  ]
+}

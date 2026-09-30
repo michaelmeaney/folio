@@ -1,0 +1,4 @@
+Use Folio Quick mode to convert the supplied reference into exactly one editable PowerPoint slide.
+Preserve its content, composition, relative visual hierarchy, aspect ratio and existing visual treatment. Do not load or apply a formal design system. Keep all meaningful text editable and recreate simple geometry and diagrams with editable objects. Intrinsically raster imagery may remain raster, but a slide-sized screenshot is not an editable reconstruction.
+Do not rewrite copy, simplify away functional visuals, replace explanatory graphics with generic icons, rearrange the composition, split the slide, or move visible content into notes.
+If faithful conversion conflicts with mandatory accessibility or representation requirements, record the conflict and return partial output; do not silently restyle or claim acceptance.
