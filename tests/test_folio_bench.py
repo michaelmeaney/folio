@@ -159,6 +159,22 @@ class BenchmarkTests(unittest.TestCase):
         (self.trial/'review-prompt.md').write_text('changed')
         with self.assertRaises(bench.BenchError): bench.verify_run(self.run)
 
+    def test_external_evaluator_preserves_legacy_judgment(self):
+        adapter_spec=importlib.util.spec_from_file_location('presentation_adapter',ROOT/'bench/evaluators/presentation.py')
+        adapter=importlib.util.module_from_spec(adapter_spec)
+        adapter_spec.loader.exec_module(adapter)
+        data={'schemaVersion':1,'runDirectory':str(self.run),'trialDirectory':str(self.trial),
+              'trialPath':'cases/quick-convert/r01','case':self.case,'reference':self.reference,
+              'controls':bench.load(self.run/'run.json')['controls'],'systemCanvas':[16,9]}
+        self.deliver()
+        self.assertEqual(adapter.evaluate(data)['status'],'unverified')
+        self.approve()
+        self.assertEqual(adapter.evaluate(data)['status'],'pass')
+        review=bench.load(self.trial/'review.json')
+        review['criteria']['layout']['status']='fail'
+        bench.write(self.trial/'review.json',review)
+        self.assertEqual(adapter.evaluate(data)['status'],'fail')
+
     def test_wrong_runtime_fails(self):
         self.deliver(); self.approve()
         review=bench.load(self.trial/'review.json')

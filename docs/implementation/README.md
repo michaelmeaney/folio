@@ -6,3 +6,5 @@ Use `implementation-<nnn>-<kebab-case-title>.md` for delivery records and `debt-
 
 - [Design system schema implementation](implementation-002-design-system-schema.md)
 - [Presentation benchmark harness](implementation-004-presentation-benchmark.md)
+
+- [Go benchmark implementation](implementation-005-go-benchmark-harness.md)

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Folio benchmark manifest v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "parallelism",
+    "configuration",
+    "selectedCases",
+    "trials",
+    "inputs",
+    "systemCanvas",
+    "runId",
+    "timestamp",
+    "folioBenchVersion",
+    "folioVersion",
+    "operatingSystem",
+    "architecture",
+    "suiteId",
+    "suiteVersion",
+    "benchmarkSha256",
+    "pluginSha256"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "parallelism": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "configuration": {
+      "type": "object"
+    },
+    "selectedCases": {
+      "type": "array"
+    },
+    "trials": {
+      "type": "array"
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "systemCanvas": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "runId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "folioBenchVersion": {
+      "type": "string"
+    },
+    "folioVersion": {
+      "type": "string"
+    },
+    "gitCommit": {
+      "type": "string"
+    },
+    "gitBranch": {
+      "type": "string"
+    },
+    "operatingSystem": {
+      "type": "string"
+    },
+    "architecture": {
+      "type": "string"
+    },
+    "suiteId": {
+      "type": "string"
+    },
+    "suiteVersion": {
+      "type": "string"
+    },
+    "benchmarkSha256": {
+      "type": "string"
+    },
+    "pluginSha256": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

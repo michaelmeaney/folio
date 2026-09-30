@@ -1,6 +1,6 @@
 # Independent benchmark execution
 
-Use this procedure when the user requests the standard benchmark or a plugin version comparison. The repository's `bench/README.md` describes preparation, execution and reporting; `bench/suite.json` fixes the cases. A standalone installation may use an externally prepared run without the repository tooling.
+Use this procedure when the user requests the standard benchmark or a plugin version comparison. The repository's `folio-bench` Go executable is the primary execution interface. `bench/README.md` describes configuration, execution and reporting; `bench/suite.json` fixes the cases. The Python runner is retained for historical runs and evaluator migration, not the primary orchestrator. A standalone installation may use an externally prepared run without the repository tooling.
 
 ## Generation contexts
 

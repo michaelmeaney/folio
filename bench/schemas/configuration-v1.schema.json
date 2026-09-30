@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Folio benchmark configuration v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "suite",
+    "pluginRoot",
+    "output",
+    "controls",
+    "commands",
+    "executor",
+    "evaluators",
+    "caseEvaluators",
+    "comparison"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "suite": {
+      "type": "string"
+    },
+    "pluginRoot": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "controls": {
+      "type": "object"
+    },
+    "commands": {
+      "type": "object"
+    },
+    "executor": {
+      "type": "string"
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "evaluators": {
+      "type": "object"
+    },
+    "caseEvaluators": {
+      "type": "object"
+    },
+    "categories": {
+      "type": "object"
+    },
+    "comparison": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

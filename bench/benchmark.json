@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "suite": "suite.json",
+  "pluginRoot": "..",
+  "output": "runs",
+  "controls": {
+    "model": "gpt-6-astra",
+    "effort": "medium",
+    "surface": "codex",
+    "context": "fresh",
+    "designSystem": "lumen",
+    "repetitions": 1,
+    "timeoutSeconds": 1200
+  },
+  "executor": "generation",
+  "commands": {
+    "generation": {
+      "argv": [
+        "codex",
+        "exec",
+        "--ephemeral",
+        "--skip-git-repo-check",
+        "--model",
+        "{model}",
+        "-c",
+        "model_reasoning_effort=\"{effort}\"",
+        "--sandbox",
+        "workspace-write",
+        "--add-dir",
+        "{trial}",
+        "--json",
+        "-"
+      ]
+    },
+    "review": {
+      "argv": [
+        "codex",
+        "exec",
+        "--ephemeral",
+        "--skip-git-repo-check",
+        "--model",
+        "{model}",
+        "-c",
+        "model_reasoning_effort=\"{effort}\"",
+        "--sandbox",
+        "workspace-write",
+        "--add-dir",
+        "{trial}",
+        "--json",
+        "-"
+      ]
+    }
+  },
+  "evaluators": {
+    "presentation": {
+      "kind": "external",
+      "version": "1.1.0",
+      "command": {
+        "argv": [
+          "python3",
+          "{resources}/evaluators/presentation.py"
+        ],
+        "timeoutSeconds": 60
+      },
+      "resources": [
+        "evaluators/presentation.py",
+        "runner.py"
+      ]
+    }
+  },
+  "caseEvaluators": {
+    "quick-convert": [
+      "presentation"
+    ],
+    "governed-restyle": [
+      "presentation"
+    ],
+    "governed-story": [
+      "presentation"
+    ]
+  },
+  "categories": {
+    "quick-convert": "reconstruction",
+    "governed-restyle": "governed",
+    "governed-story": "composition"
+  },
+  "comparison": {
+    "maxScoreDrop": 0
+  },
+  "reviewer": "review"
+}
