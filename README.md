@@ -60,9 +60,15 @@ Internally, Folio currently expresses that progression through three execution p
 
 These are execution semantics, not prerequisites a new user must learn before using Folio. The public experience should favour the simplest path that satisfies the request and progressively disclose the deeper controls.
 
-Before presentation generation, Folio plays back the interpreted transformation and obtains confirmation. For reference-image work, the primary choice is **Convert** (preserve the reference design) or **Redesign** (recompose it using a design system).
+Before presentation generation, Folio confirms the transformation, selected system/preferences, preservation scope and slide count together. Transformation is independent of the execution mode:
 
-For Governed execution, the user explicitly selects either an installed Folio design system or supplies an alternative design-system repository/link. Folio does not silently choose Lumen or another system.
+- **Convert** preserves content, composition and visual treatment while making the result editable.
+- **Restyle** changes treatment while preserving content, relationships, composition and relative hierarchy. It can be Guided or Governed.
+- **Redesign** permits explicitly scoped structural changes while protecting meaning and facts. It can be Guided or Governed.
+
+Naming a design system selects Governed mode and defaults reference work to Restyle. It does not authorise recomposition or extra slides. Folio applies treatment within the [reference composition contract](skills/folio/references/composition-contract.md), surfaces mandatory conflicts, and requires separate content, composition, treatment and artefact/editability acceptance gates.
+
+For Governed execution, Folio uses the system already named or supplied; if none is selected, the user chooses either an installed Folio design system or supplies an alternative design-system repository/link. Folio does not silently choose Lumen or another system.
 
 ## What Folio provides
 

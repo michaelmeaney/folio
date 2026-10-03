@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Folio 0.1 semantic contracts and resolve the supported DTCG token profile.
+"""Validate Folio versioned semantic contracts and resolve the supported DTCG token profile.
 
 Install the optional validator dependency with: python3 -m pip install -r requirements-schema.txt
 """
@@ -15,7 +15,11 @@ from typing import Any
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import SchemaError
 
-SCHEMA_PATH = Path(__file__).resolve().parents[1] / "schemas" / "folio-0.1.0.schema.json"
+from folio_preservation import PreservationError, validate_preservation_bundle
+
+SCHEMA_ROOT = Path(__file__).resolve().parents[1] / "schemas"
+SCHEMA_PATH = SCHEMA_ROOT / "folio-0.1.0.schema.json"
+SUPPORTED_VERSIONS = {"0.1.0", "0.2.0"}
 ALIAS = re.compile(r"^\{([A-Za-z0-9_.-]+)\}$")
 SUPPORTED_TYPES = {"color", "dimension", "fontFamily", "fontWeight", "number", "typography", "border", "strokeStyle", "shadow", "gradient"}
 
@@ -37,8 +41,23 @@ def read_json(path: Path) -> dict:
     return value
 
 
+def select_schema(document: dict, schema: dict, where: str) -> dict:
+    version = document.get("schemaVersion")
+    if version not in SUPPORTED_VERSIONS:
+        raise ContractError(f"{where}: unsupported schemaVersion {version!r}")
+    if not schema.get("$id", "").endswith(f"folio-{version}.schema.json"):
+        schema = read_json(SCHEMA_ROOT / f"folio-{version}.schema.json")
+    return schema
+
+
 def validate_shape(document: dict, schema: dict, where: str) -> None:
-    validator = Draft202012Validator(schema)
+    schema = select_schema(document, schema, where)
+    kinds = {entry["$ref"].split("/")[-1] for entry in schema["oneOf"]}
+    kind = document.get("kind")
+    if kind not in kinds:
+        raise ContractError(f"{where}: unsupported contract kind {kind!r} for {document['schemaVersion']}")
+    # Validate the known kind directly so a failed gate reports its actual field.
+    validator = Draft202012Validator({"$ref": f"#/$defs/{kind}", "$defs": schema["$defs"]})
     errors = sorted(validator.iter_errors(document), key=lambda error: tuple(str(part) for part in error.path))
     if errors:
         error = errors[0]
@@ -209,6 +228,7 @@ def load_system(system_root: Path, schema: dict) -> tuple[dict, dict, dict[str, 
 
 def validate_document(path: Path, schema: dict) -> dict:
     document = read_json(path)
+    schema = select_schema(document, schema, str(path))
     kind = document.get("kind")
     if kind not in schema["$defs"]:
         raise ContractError(f"{path}: unknown contract kind {kind!r}")
@@ -257,6 +277,10 @@ def validate_document(path: Path, schema: dict) -> dict:
 
 
 def validate_bundle(documents: list[tuple[Path, dict]], tokens: dict[str, dict]) -> None:
+    # Bundle callers must not bypass shape checks on the stricter evidence records.
+    for path, document in documents:
+        if document.get("schemaVersion") == "0.2.0":
+            validate_shape(document, read_json(SCHEMA_ROOT / "folio-0.2.0.schema.json"), str(path))
     by_kind_id = {(doc["kind"], doc.get("id")): doc for _, doc in documents if "id" in doc}
     by_path = {path: doc for path, doc in documents}
     for path, doc in documents:
@@ -306,7 +330,7 @@ def validate_bundle(documents: list[tuple[Path, dict]], tokens: dict[str, dict])
             for obj in doc["objects"]:
                 if "semanticRef" in obj and obj["semanticRef"] not in instances:
                     raise ContractError(f"{path}: unknown semanticRef {obj['semanticRef']}")
-                if obj["type"] == "connector" and (obj.get("source") not in instances or obj.get("target") not in instances):
+                if obj["type"] == "connector" and "preservation" not in doc and (obj.get("source") not in instances or obj.get("target") not in instances):
                     raise ContractError(f"{path}: connector endpoints do not resolve")
 
         def check_references(value: Any) -> None:
@@ -320,6 +344,11 @@ def validate_bundle(documents: list[tuple[Path, dict]], tokens: dict[str, dict])
                     check_references(child)
 
         check_references(doc)
+
+    try:
+        validate_preservation_bundle(documents)
+    except PreservationError as exc:
+        raise ContractError(str(exc)) from exc
 
 
 def main() -> int:

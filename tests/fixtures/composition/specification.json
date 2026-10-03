@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "0.2.0",
+  "kind": "visual-specification",
+  "id": "architecture-reference",
+  "source": "source.svg",
+  "sourceSha256": "a9c3c183fd2ab41defded0f3966560048a5e0cb224be901d6d168ddc6cd9e6c2",
+  "authority": "reference",
+  "sourceDimensions": {
+    "width": 1200,
+    "height": 675,
+    "unit": "px"
+  },
+  "sourceSlideCount": 1,
+  "slideIndex": 1,
+  "intent": {
+    "operation": "restyle",
+    "mode": "governed",
+    "designSystem": "lumen",
+    "permissions": {
+      "rewriteCopy": false,
+      "splitSlides": false,
+      "replacePrimaryVisual": false,
+      "recompose": false,
+      "consolidate": false,
+      "omitContent": false
+    }
+  },
+  "regions": [
+    {
+      "id": "title",
+      "role": "title",
+      "frame": {
+        "x": 0.05,
+        "y": 0.05,
+        "width": 0.9,
+        "height": 0.1
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "Editable presentation pipeline",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "structured",
+      "role": "text",
+      "frame": {
+        "x": 0.05,
+        "y": 0.25,
+        "width": 0.22,
+        "height": 0.15
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "Structured parsing",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "unstructured",
+      "role": "text",
+      "frame": {
+        "x": 0.05,
+        "y": 0.45,
+        "width": 0.22,
+        "height": 0.15
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "Unstructured inference",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "existing",
+      "role": "text",
+      "frame": {
+        "x": 0.05,
+        "y": 0.65,
+        "width": 0.22,
+        "height": 0.15
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "Existing diagram rendering",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "architecture",
+      "role": "primary-visual",
+      "frame": {
+        "x": 0.38,
+        "y": 0.25,
+        "width": 0.32,
+        "height": 0.55
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "Architecture canvas",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "editable",
+      "role": "supporting-visual",
+      "frame": {
+        "x": 0.8,
+        "y": 0.3,
+        "width": 0.16,
+        "height": 0.15
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "Editable output",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "preview",
+      "role": "supporting-visual",
+      "frame": {
+        "x": 0.8,
+        "y": 0.6,
+        "width": 0.16,
+        "height": 0.15
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "Rendered preview",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "top-space",
+      "role": "whitespace",
+      "frame": {
+        "x": 0.05,
+        "y": 0.16,
+        "width": 0.9,
+        "height": 0.05
+      },
+      "tolerance": {
+        "x": 0.015,
+        "y": 0.015,
+        "width": 0.015,
+        "height": 0.015
+      },
+      "text": "",
+      "confidence": 1,
+      "ambiguity": ""
+    }
+  ],
+  "relationships": [
+    {
+      "id": "structured-route",
+      "from": "structured",
+      "to": "architecture",
+      "type": "technical",
+      "directed": true,
+      "label": "parse",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "inference-route",
+      "from": "unstructured",
+      "to": "architecture",
+      "type": "technical",
+      "directed": true,
+      "label": "infer",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "existing-route",
+      "from": "existing",
+      "to": "architecture",
+      "type": "technical",
+      "directed": true,
+      "label": "render",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "editable-route",
+      "from": "architecture",
+      "to": "editable",
+      "type": "technical",
+      "directed": true,
+      "label": "edit",
+      "confidence": 1,
+      "ambiguity": ""
+    },
+    {
+      "id": "preview-route",
+      "from": "architecture",
+      "to": "preview",
+      "type": "illustrative",
+      "directed": true,
+      "label": "inspect",
+      "confidence": 1,
+      "ambiguity": ""
+    }
+  ],
+  "hierarchy": {
+    "primaryRegion": "architecture",
+    "readingOrder": [
+      "title",
+      "structured",
+      "unstructured",
+      "existing",
+      "architecture",
+      "editable",
+      "preview"
+    ]
+  },
+  "deviations": []
+}

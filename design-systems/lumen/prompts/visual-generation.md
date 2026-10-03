@@ -2,9 +2,11 @@
 
 Treat the generated image as a visual specification for reconstruction, not the final presentation artefact.
 
-Before generating, resolve the semantic message, select a Lumen archetype, lay out foreground text and functional visuals, identify remaining negative space, inspect the shared and Lumen component registries/catalogue, then add atmosphere only where negative space permits it.
+For new composition or authorised Redesign, resolve the semantic message, select a Lumen archetype, lay out foreground text and functional visuals, identify remaining negative space, inspect the shared and Lumen component registries/catalogue, then add atmosphere only where negative space permits it.
 
-Create a 16:9 premium minimalist editorial slide using Lumen's exact tokens. Prefer asymmetrical composition, substantial intentional whitespace, one dominant idea, restrained thin-line vectors and simple diagrams.
+For Restyle, use this sequence: source analysis -> frozen composition contract -> text-aware geometry draft with representative visuals -> Lumen treatment -> editable reconstruction -> source/final comparison. Use the reference-constrained profile. Preserve dominant visuals and relative hierarchy. Select approved typography by role and available region; do not force h1 onto every title. Do not replace an integrated diagram with generic icons or split it to satisfy a density preference. Surface mandatory conflicts before generation.
+
+For new composition, create a 16:9 premium minimalist editorial slide using Lumen's exact tokens. Prefer asymmetrical composition, substantial intentional whitespace, one dominant idea, restrained thin-line vectors and simple diagrams.
 
 Keep meaningful text and essential diagram boundaries legible against their final backgrounds. Use the functional border for meaningful boxes; do not define them only with a pale fill. Use light accent colours as fills or decoration, not as small text on white.
 

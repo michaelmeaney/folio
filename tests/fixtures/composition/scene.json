@@ -1,0 +1,582 @@
+{
+  "schemaVersion": "0.2.0",
+  "kind": "scene",
+  "id": "architecture-restyle",
+  "slideIndex": 1,
+  "canvas": {
+    "width": 1200,
+    "height": 675,
+    "unit": "px"
+  },
+  "objects": [
+    {
+      "id": "title-shape",
+      "type": "shape",
+      "frame": {
+        "x": 60.0,
+        "y": 33.75,
+        "width": 1080.0,
+        "height": 67.5
+      },
+      "layer": "visual",
+      "editing": [
+        "shapeGeometry"
+      ],
+      "style": {
+        "fill": {
+          "token": "color.background"
+        }
+      }
+    },
+    {
+      "id": "title-label",
+      "type": "text",
+      "text": "Editable presentation pipeline",
+      "frame": {
+        "x": 72.0,
+        "y": 47.25000000000001,
+        "width": 1056.0,
+        "height": 40.5
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ],
+      "style": {
+        "typography": {
+          "token": "typography.body"
+        }
+      }
+    },
+    {
+      "id": "structured-shape",
+      "type": "shape",
+      "frame": {
+        "x": 60.0,
+        "y": 168.75,
+        "width": 264.0,
+        "height": 101.25
+      },
+      "layer": "visual",
+      "editing": [
+        "shapeGeometry"
+      ],
+      "style": {
+        "fill": {
+          "token": "color.background"
+        }
+      }
+    },
+    {
+      "id": "structured-label",
+      "type": "text",
+      "text": "Structured parsing",
+      "frame": {
+        "x": 72.0,
+        "y": 182.25,
+        "width": 240.0,
+        "height": 74.24999999999999
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ],
+      "style": {
+        "typography": {
+          "token": "typography.body"
+        }
+      }
+    },
+    {
+      "id": "unstructured-shape",
+      "type": "shape",
+      "frame": {
+        "x": 60.0,
+        "y": 303.75,
+        "width": 264.0,
+        "height": 101.25
+      },
+      "layer": "visual",
+      "editing": [
+        "shapeGeometry"
+      ],
+      "style": {
+        "fill": {
+          "token": "color.background"
+        }
+      }
+    },
+    {
+      "id": "unstructured-label",
+      "type": "text",
+      "text": "Unstructured inference",
+      "frame": {
+        "x": 72.0,
+        "y": 317.25,
+        "width": 240.0,
+        "height": 74.24999999999999
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ],
+      "style": {
+        "typography": {
+          "token": "typography.body"
+        }
+      }
+    },
+    {
+      "id": "existing-shape",
+      "type": "shape",
+      "frame": {
+        "x": 60.0,
+        "y": 438.75,
+        "width": 264.0,
+        "height": 101.25
+      },
+      "layer": "visual",
+      "editing": [
+        "shapeGeometry"
+      ],
+      "style": {
+        "fill": {
+          "token": "color.background"
+        }
+      }
+    },
+    {
+      "id": "existing-label",
+      "type": "text",
+      "text": "Existing diagram rendering",
+      "frame": {
+        "x": 72.0,
+        "y": 452.25,
+        "width": 240.0,
+        "height": 74.24999999999999
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ],
+      "style": {
+        "typography": {
+          "token": "typography.body"
+        }
+      }
+    },
+    {
+      "id": "architecture-shape",
+      "type": "shape",
+      "frame": {
+        "x": 456.0,
+        "y": 168.75,
+        "width": 384.0,
+        "height": 371.25000000000006
+      },
+      "layer": "visual",
+      "editing": [
+        "shapeGeometry"
+      ],
+      "style": {
+        "fill": {
+          "token": "color.background"
+        }
+      }
+    },
+    {
+      "id": "architecture-label",
+      "type": "text",
+      "text": "Architecture canvas",
+      "frame": {
+        "x": 468.0,
+        "y": 182.25,
+        "width": 360.0,
+        "height": 344.25
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ],
+      "style": {
+        "typography": {
+          "token": "typography.body"
+        }
+      }
+    },
+    {
+      "id": "editable-shape",
+      "type": "shape",
+      "frame": {
+        "x": 960.0,
+        "y": 202.5,
+        "width": 192.0,
+        "height": 101.25
+      },
+      "layer": "visual",
+      "editing": [
+        "shapeGeometry"
+      ],
+      "style": {
+        "fill": {
+          "token": "color.background"
+        }
+      }
+    },
+    {
+      "id": "editable-label",
+      "type": "text",
+      "text": "Editable output",
+      "frame": {
+        "x": 972.0000000000001,
+        "y": 216.0,
+        "width": 168.00000000000003,
+        "height": 74.24999999999999
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ],
+      "style": {
+        "typography": {
+          "token": "typography.body"
+        }
+      }
+    },
+    {
+      "id": "preview-shape",
+      "type": "shape",
+      "frame": {
+        "x": 960.0,
+        "y": 405.0,
+        "width": 192.0,
+        "height": 101.25
+      },
+      "layer": "visual",
+      "editing": [
+        "shapeGeometry"
+      ],
+      "style": {
+        "fill": {
+          "token": "color.background"
+        }
+      }
+    },
+    {
+      "id": "preview-label",
+      "type": "text",
+      "text": "Rendered preview",
+      "frame": {
+        "x": 972.0000000000001,
+        "y": 418.5,
+        "width": 168.00000000000003,
+        "height": 74.24999999999999
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ],
+      "style": {
+        "typography": {
+          "token": "typography.body"
+        }
+      }
+    },
+    {
+      "id": "structured-route",
+      "type": "connector",
+      "source": "structured-shape",
+      "target": "architecture-shape",
+      "frame": {
+        "x": 324.0,
+        "y": 219.375,
+        "width": 132.00000000000003,
+        "height": 135.0
+      },
+      "layer": "visual",
+      "relationship": {
+        "from": "structured",
+        "to": "architecture",
+        "type": "technical",
+        "directed": true,
+        "label": "parse"
+      },
+      "editing": [
+        "attachConnectors"
+      ]
+    },
+    {
+      "id": "structured-route-label",
+      "type": "text",
+      "text": "parse",
+      "frame": {
+        "x": 390.0,
+        "y": 270.875,
+        "width": 45,
+        "height": 16
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ]
+    },
+    {
+      "id": "inference-route",
+      "type": "connector",
+      "source": "unstructured-shape",
+      "target": "architecture-shape",
+      "frame": {
+        "x": 324.0,
+        "y": 354.375,
+        "width": 132.00000000000003,
+        "height": 1
+      },
+      "layer": "visual",
+      "relationship": {
+        "from": "unstructured",
+        "to": "architecture",
+        "type": "technical",
+        "directed": true,
+        "label": "infer"
+      },
+      "editing": [
+        "attachConnectors"
+      ]
+    },
+    {
+      "id": "inference-route-label",
+      "type": "text",
+      "text": "infer",
+      "frame": {
+        "x": 390.0,
+        "y": 338.375,
+        "width": 45,
+        "height": 16
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ]
+    },
+    {
+      "id": "existing-route",
+      "type": "connector",
+      "source": "existing-shape",
+      "target": "architecture-shape",
+      "frame": {
+        "x": 324.0,
+        "y": 354.375,
+        "width": 132.00000000000003,
+        "height": 135.0
+      },
+      "layer": "visual",
+      "relationship": {
+        "from": "existing",
+        "to": "architecture",
+        "type": "technical",
+        "directed": true,
+        "label": "render"
+      },
+      "editing": [
+        "attachConnectors"
+      ]
+    },
+    {
+      "id": "existing-route-label",
+      "type": "text",
+      "text": "render",
+      "frame": {
+        "x": 390.0,
+        "y": 405.875,
+        "width": 45,
+        "height": 16
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ]
+    },
+    {
+      "id": "editable-route",
+      "type": "connector",
+      "source": "architecture-shape",
+      "target": "editable-shape",
+      "frame": {
+        "x": 840.0,
+        "y": 253.125,
+        "width": 120.00000000000004,
+        "height": 101.25000000000001
+      },
+      "layer": "visual",
+      "relationship": {
+        "from": "architecture",
+        "to": "editable",
+        "type": "technical",
+        "directed": true,
+        "label": "edit"
+      },
+      "editing": [
+        "attachConnectors"
+      ]
+    },
+    {
+      "id": "editable-route-label",
+      "type": "text",
+      "text": "edit",
+      "frame": {
+        "x": 900.0,
+        "y": 287.74999999999994,
+        "width": 45,
+        "height": 16
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ]
+    },
+    {
+      "id": "preview-route",
+      "type": "connector",
+      "source": "architecture-shape",
+      "target": "preview-shape",
+      "frame": {
+        "x": 840.0,
+        "y": 354.375,
+        "width": 120.00000000000004,
+        "height": 101.24999999999994
+      },
+      "layer": "visual",
+      "relationship": {
+        "from": "architecture",
+        "to": "preview",
+        "type": "illustrative",
+        "directed": true,
+        "label": "inspect"
+      },
+      "editing": [
+        "attachConnectors"
+      ]
+    },
+    {
+      "id": "preview-route-label",
+      "type": "text",
+      "text": "inspect",
+      "frame": {
+        "x": 900.0,
+        "y": 389.0,
+        "width": 45,
+        "height": 16
+      },
+      "layer": "text",
+      "editing": [
+        "text"
+      ]
+    }
+  ],
+  "readingOrder": [
+    "title-label",
+    "structured-label",
+    "unstructured-label",
+    "existing-label",
+    "architecture-label",
+    "editable-label",
+    "preview-label"
+  ],
+  "preservation": {
+    "visualSpecificationRef": "specification.json",
+    "baselineSha256": "04abdb3b996ec156ceb68ccace9201ac09160e01024412730f23ba3cdaea23ca",
+    "regions": [
+      {
+        "regionId": "title",
+        "objectIds": [
+          "title-shape",
+          "title-label"
+        ]
+      },
+      {
+        "regionId": "structured",
+        "objectIds": [
+          "structured-shape",
+          "structured-label"
+        ]
+      },
+      {
+        "regionId": "unstructured",
+        "objectIds": [
+          "unstructured-shape",
+          "unstructured-label"
+        ]
+      },
+      {
+        "regionId": "existing",
+        "objectIds": [
+          "existing-shape",
+          "existing-label"
+        ]
+      },
+      {
+        "regionId": "architecture",
+        "objectIds": [
+          "architecture-shape",
+          "architecture-label"
+        ]
+      },
+      {
+        "regionId": "editable",
+        "objectIds": [
+          "editable-shape",
+          "editable-label"
+        ]
+      },
+      {
+        "regionId": "preview",
+        "objectIds": [
+          "preview-shape",
+          "preview-label"
+        ]
+      },
+      {
+        "regionId": "top-space",
+        "objectIds": []
+      }
+    ],
+    "relationships": [
+      {
+        "relationshipId": "structured-route",
+        "objectIds": [
+          "structured-route",
+          "structured-route-label"
+        ]
+      },
+      {
+        "relationshipId": "inference-route",
+        "objectIds": [
+          "inference-route",
+          "inference-route-label"
+        ]
+      },
+      {
+        "relationshipId": "existing-route",
+        "objectIds": [
+          "existing-route",
+          "existing-route-label"
+        ]
+      },
+      {
+        "relationshipId": "editable-route",
+        "objectIds": [
+          "editable-route",
+          "editable-route-label"
+        ]
+      },
+      {
+        "relationshipId": "preview-route",
+        "objectIds": [
+          "preview-route",
+          "preview-route-label"
+        ]
+      }
+    ],
+    "primaryRegion": "architecture"
+  }
+}

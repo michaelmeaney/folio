@@ -32,3 +32,5 @@ tags:
 The repository validator, schema validator, migration drift checks and semantic fixtures form the contract gate. Conversion preserves source colour hex values and records source units for migrated dimensions. Rendered before/after comparison and target-application editing checks are still required before claiming visual parity or native-editing support.
 
 The implementation covers the first contract and token portion of [the plan](../plans/plan-001-design-system-schema-foundation.md). The catalogue is a schema fixture, not a reviewed production catalogue. Constraint solving, native PowerPoint bindings, bounded repairs, DTCG Resolver modes, safe SVG ingestion, OpenUI projection, independent consumption and comparative token/cost measurement remain open. No stable conformance claim is made.
+
+Composition-preserving transformation contracts and acceptance evidence are extended in [implementation 003](implementation-003-composition-preservation.md), using schema 0.2.0 alongside these original contracts.

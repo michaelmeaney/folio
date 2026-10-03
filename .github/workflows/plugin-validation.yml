@@ -24,3 +24,8 @@ jobs:
 
       - name: Validate plugin package and resources
         run: python3 scripts/validate_plugin.py .
+
+      - name: Validate semantic contracts and preservation regressions
+        run: |
+          python3 -m pip install -r requirements-schema.txt
+          python3 -m unittest discover -s tests -v

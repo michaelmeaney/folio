@@ -11,10 +11,18 @@ Lumen is a minimal, modern editorial presentation system built around strong typ
 - One primary idea per slide.
 - Prefer whitespace over containers.
 - Prefer typography, alignment and spatial hierarchy over decoration.
-- Use progressive disclosure for complex concepts.
-- Do not shrink typography to fit excess content.
+- Use progressive disclosure for new composition or explicitly authorised redesign.
+- Do not automatically shrink typography to conceal overflow. Select appropriate approved tokens during composition.
 - Reuse approved components before creating new ones.
 - Do not introduce unregistered fonts, colours, effects or component styles.
+
+## Reference-constrained composition
+
+Apply Lumen within the reference composition contract for Restyle. Preserve content, geometry, grouping, reading order, relative hierarchy, functional visuals and visible content per slide. Default archetypes, grid alignment and editorial whitespace preferences must fit that contract.
+
+Fonts, palette, line treatment and the 11 pt minimum are treatment constraints. The declared canvas and safe areas are constraints too: if they conflict with the source, surface that conflict and obtain an explicit exception or permission to redesign. Do not quietly violate a mandatory rule or recompose to satisfy it.
+
+Explanatory diagrams, convergence paths, component relationships and visual metaphors that organise the argument are functional content. Preserve their explanatory role and relative weight; simplify treatment only. An integrated architecture diagram can express one primary idea even when it contains many labels.
 
 ## Colour
 
@@ -70,13 +78,15 @@ Primary font: Inter. Fallback: Aptos, then Arial.
 | caption | 11 pt | 15 pt | 400 |
 | label | 12 pt | 16 pt | 600 |
 
+Choose a typography token that fits the reference's visual role and allocated region. A slide title need not use h1, and a component heading need not use h3. Check the title-to-primary-visual relationship with realistic text measurements. Selecting an appropriate approved token is expected; automatic font shrinking after overflow is not.
+
 Use 600 or 700 for emphasis. Use italics only for editorial subheads or questions. Do not use heading all-caps. Do not use text below 11 pt.
 
 ## Layout
 
 Safe area: left/right 0.75 in; top 0.55 in; bottom 0.50 in. Use a 12-column grid with a 0.20 in gutter. Spacing scale: 0.10, 0.20, 0.30, 0.40, 0.60, 0.80, 1.20 in.
 
-Prefer asymmetrical editorial composition. Normal density ceiling: one headline, one supporting statement, one primary visual and roughly three supporting concepts. Split denser material across slides.
+Prefer asymmetrical editorial composition. Normal density ceiling: one headline, one supporting statement, one primary visual and roughly three supporting concepts. For new composition or Redesign with explicit splitting permission, split material when needed for comprehension. For Convert or Restyle, preserve source slide structure; a density preference cannot move content to new slides or speaker notes. If approved typography cannot fit readably, surface the conflict.
 
 ## Icons and vectors
 
@@ -115,4 +125,4 @@ Maintain stable component positions across build slides. Do not redesign already
 
 ## Prohibited patterns
 
-Do not use generic card grids, coloured header strips, arbitrary gradients, excessive rounded rectangles, tiny text, decorative icons beside every bullet, random colours, inconsistent SVG styles, raster text, or flattened diagrams when native/vector construction is practical. When content does not fit, create another slide.
+Do not use generic card grids, coloured header strips, arbitrary gradients, excessive rounded rectangles, tiny text, decorative icons beside every bullet, random colours, inconsistent SVG styles, raster text, or flattened diagrams when native/vector construction is practical. When content does not fit, apply the operation-specific conflict and splitting rules above.

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/></marker></defs>
+<rect width="1200" height="675" fill="#fff"/>
+<rect x="60.0" y="33.75" width="1080.0" height="67.5" rx="4" fill="#f4f4f4" stroke="#334155"/>
+<text x="72.0" y="67.5" font-family="Arial" font-size="16">Editable presentation pipeline</text>
+<rect x="60.0" y="168.75" width="264.0" height="101.25" rx="4" fill="#f4f4f4" stroke="#334155"/>
+<text x="72.0" y="219.375" font-family="Arial" font-size="16">Structured parsing</text>
+<rect x="60.0" y="303.75" width="264.0" height="101.25" rx="4" fill="#f4f4f4" stroke="#334155"/>
+<text x="72.0" y="354.375" font-family="Arial" font-size="16">Unstructured inference</text>
+<rect x="60.0" y="438.75" width="264.0" height="101.25" rx="4" fill="#f4f4f4" stroke="#334155"/>
+<text x="72.0" y="489.375" font-family="Arial" font-size="16">Existing diagram rendering</text>
+<rect x="456.0" y="168.75" width="384.0" height="371.25000000000006" rx="4" fill="#e1ecfb" stroke="#334155"/>
+<text x="468.0" y="354.375" font-family="Arial" font-size="16">Architecture canvas</text>
+<rect x="960.0" y="202.5" width="192.0" height="101.25" rx="4" fill="#f4f4f4" stroke="#334155"/>
+<text x="972.0000000000001" y="253.125" font-family="Arial" font-size="16">Editable output</text>
+<rect x="960.0" y="405.0" width="192.0" height="101.25" rx="4" fill="#f4f4f4" stroke="#334155"/>
+<text x="972.0000000000001" y="455.62499999999994" font-family="Arial" font-size="16">Rendered preview</text>
+<path d="M324.0,219.375 L456.0,354.375" fill="none" stroke="#334155" marker-end="url(#arrow)"/>
+<text x="390.0" y="280.875" font-family="Arial" font-size="12">parse</text>
+<path d="M324.0,354.375 L456.0,354.375" fill="none" stroke="#334155" marker-end="url(#arrow)"/>
+<text x="390.0" y="348.375" font-family="Arial" font-size="12">infer</text>
+<path d="M324.0,489.375 L456.0,354.375" fill="none" stroke="#334155" marker-end="url(#arrow)"/>
+<text x="390.0" y="415.875" font-family="Arial" font-size="12">render</text>
+<path d="M840.0,354.375 L960.0,253.125" fill="none" stroke="#334155" marker-end="url(#arrow)"/>
+<text x="900.0" y="297.75" font-family="Arial" font-size="12">edit</text>
+<path d="M840.0,354.375 L960.0,455.62499999999994" fill="none" stroke="#334155" marker-end="url(#arrow)"/>
+<text x="900.0" y="399.0" font-family="Arial" font-size="12">inspect</text>
+</svg>

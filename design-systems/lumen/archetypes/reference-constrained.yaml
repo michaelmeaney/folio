@@ -1,0 +1,12 @@
+id: reference-constrained
+version: 0.1.0
+intent: Apply Lumen treatment within a reference-derived composition contract.
+rules:
+  baseline_before_output: true
+  preserve_regions_relationships_hierarchy: true
+  text_aware_geometry_before_styling: true
+  select_approved_typography_by_visual_role: true
+  archetypes_must_fit_reference: true
+  split_only_with_explicit_permission: true
+  surface_mandatory_constraint_conflicts: true
+  compare_source_and_final_render: true

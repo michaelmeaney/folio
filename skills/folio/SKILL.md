@@ -9,34 +9,30 @@ Treat supplied or generated imagery as a visual specification, not the final pre
 
 ## Confirm transformation intent
 
-Before starting presentation generation, establish and play back the requested transformation. Presentation generation is a multi-step workflow, so do not begin expensive execution while the transformation intent is ambiguous.
+Establish transformation intent separately from the capability mode. For a supplied reference:
 
-For a supplied reference image, distinguish:
+| Intent | Changes | Protected by default |
+| --- | --- | --- |
+| Convert | Representation becomes editable | Content, composition and visual treatment |
+| Restyle | Fonts, palette, strokes, surfaces and illustration treatment | Content, relationships, composition, relative hierarchy and slide structure |
+| Redesign | Explicitly authorised composition or story structure | Meaning, facts and any protected relationships or regions |
 
-1. **Convert** — recreate the reference as an editable PowerPoint slide/deck while preserving its existing visual design. This maps to **Quick** mode.
-2. **Redesign** — use the reference as content/composition evidence and recreate it using a formal design system. This maps to **Governed** mode.
+Naming a design system authorises a change in visual treatment, not a change in composition. Default reference work with requested styling to Restyle. Recomposition, simplification, copy rewriting, consolidation, replacing a primary visual or splitting slides each needs explicit scope. A request for Redesign does not automatically authorise every structural change.
 
-If the request does not already make this distinction unambiguous, ask:
+Select the capability mode independently:
 
-"How should I use this reference?
-1. Convert it — preserve the existing design and recreate it as editable PowerPoint.
-2. Redesign it — recreate the content using a design system."
+- Convert without styling or governance: **Quick**.
+- Lightweight preferences or an ungoverned brief: **Guided**, including Restyle or explicitly scoped Redesign.
+- A named, selected or supplied formal design system: **Governed**, normally Restyle for references. Governed Convert is possible only if the source treatment already satisfies the system; surface conflicts.
+- A brief without a reference: new composition in Guided or Governed mode; do not invent a preservation baseline.
 
-Then play back the interpretation in plain language and obtain confirmation before generation. State the consequence rather than relying on internal mode names.
+Play back intent, selected system or local preferences, preservation scope and slide count together, and obtain confirmation before generation. Existing explicit confirmation remains valid; do not ask the user to select a system already named or supplied. Ask about genuine ambiguity or conflicts together in one concise question.
 
-Examples:
-- "I'll recreate this reference as editable PowerPoint while preserving its existing visual design. I won't apply a Folio design system."
-- "I'll use the reference for its content and structure, then recreate it using a design system rather than reproducing the reference styling."
+For example: "I'll preserve this reference's composition, relationships and one-slide structure, rebuild it as editable PowerPoint, and apply Lumen's visual treatment."
 
-Even when the original request appears explicit, play back the interpreted transformation before execution so the user has an opportunity to correct it. Do not start generation until the transformation is confirmed.
+When Governed mode is requested without a selected system, read `references/design-system-resolution.md`, offer registered systems or user-supplied resources, and obtain a selection. Do not infer Governed mode merely from the word Redesign or choose a system on the user's behalf. A standalone Skill can use supplied resources even when the plugin registry is absent.
 
-An explicit request to use a named, selected or supplied design system is **Governed** mode. In a plugin installation, load `../../design-systems/registry.json` when it is available and treat each registered system name or ID as an explicit Governed request. A standalone Skill installation may not include that plugin-level registry; do not make registry lookup a prerequisite for classifying or using a user-supplied system.
-
-If the user chooses **Redesign** without already naming or supplying a design system, do not select one on their behalf. Read `references/design-system-resolution.md`, present installed Folio options from the canonical registry when it is available, and offer the option to provide a repository link containing an alternative design system. If the registry is absent in a standalone Skill installation, explain that the installed-system inventory is unavailable and offer the supplied-system option. Obtain their selection before composing.
-
-Guided mode remains available when the user explicitly asks for lightweight adaptation such as "clean this up", "modernise this", "use these colours/fonts", or similar preferences without a formal design system. Play back that interpretation and confirm it before execution.
-
-Read `references/modes.md` for the exact capability contract.
+Read `references/modes.md` for mode boundaries and `references/composition-contract.md` for authority, preservation and conflict rules.
 
 ## Quick mode
 
@@ -82,9 +78,9 @@ Resolve the active design authority only after the user's selection is explicit:
 1. User-supplied organisational design-system or brand/design resources, whether complete or partial.
 2. A user-selected design system installed in the Folio plugin.
 
-If Governed mode or Redesign is requested without a selected system, present the registered Folio options plus the option to supply an alternative repository/link, then wait for the user's choice. Do not default to Lumen.
+If Governed mode is requested without a selected system, present the registered Folio options plus the option to supply an alternative repository/link, then wait for the user's choice. Do not default to Lumen.
 
-For a user-supplied system, inspect and use the supplied rules, tokens, templates, assets, components and examples as the active design authority. Do not substitute Lumen rules or assets into that system unless the user explicitly requests a hybrid.
+For a user-supplied system, inspect and use the supplied rules, tokens, templates, assets, components and examples as the visual-treatment authority within the confirmed transformation. Do not substitute Lumen rules or assets into that system unless the user explicitly requests a hybrid.
 
 For installed Folio systems, use `../../design-systems/registry.json` when it is present in the plugin installation. Treat it as the canonical inventory for discovery, listing and ID/name resolution. If the user asks which installed systems are available and the registry is absent, explain that the standalone Skill bundle does not include the plugin's inventory; do not infer available systems from directories. After selecting a registered system, follow its `manifest` path and load that `system.json` first. Without the registry, continue with user-supplied design-system resources and do not attempt plugin-relative system discovery.
 
@@ -105,12 +101,12 @@ If the manifest omits a category, treat it as absent/optional unless the request
 
 Then:
 
-1. Establish the message and information architecture.
+1. Establish the message and information architecture; for reference work, freeze the source composition contract before building output.
 2. Reuse approved components before inventing new primitives when the active system defines component governance.
 3. Compose foreground content first, then whitespace, then background atmosphere where the active system requires it.
 4. Use image generation only for visual exploration or missing decorative/reference assets.
 5. Reconstruct using native editable text, shapes, connectors and canonical SVGs where the active system supplies them.
-6. Validate against the active design system's rules and available resources.
+6. Validate all four acceptance gates, including composition preservation as well as the active design system's rules and available resources.
 7. Apply candidate/approval lifecycle rules only when the active system defines them.
 
 If a selected or supplied design system is incomplete, identify the missing material that blocks reliable governance. Ask for it when necessary; otherwise validate only the rules actually supplied. Offer Guided mode only as an explicit fallback. Never claim Governed compliance with resources that were not available.
@@ -129,5 +125,7 @@ Across all modes:
 - Prefer 16:9 unless the source reference or active design system specifies another ratio.
 - Use the host environment's presentation-generation and render/QA tooling.
 - Render a preview and inspect it before completion.
+
+For reference work, establish the composition contract before choosing an archetype; an archetype must fit protected geometry. Functional diagrams and explanatory illustrations retain their visual weight. Surface mandatory system conflicts instead of silently splitting or recomposing.
 
 For execution details, read `references/workflow.md` and `references/reconstruction.md`. For completion criteria, read `references/acceptance.md`.

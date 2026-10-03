@@ -1,6 +1,19 @@
 # Folio acceptance criteria
 
-A reconstructed or generated deck is complete only when all criteria for the selected mode pass.
+A reconstructed or generated deck is complete only when every applicable gate passes. Gates do not compensate for one another.
+
+| Gate | Required evidence |
+| --- | --- |
+| Content and semantics | Source-to-output coverage, exact visible text unless rewriting is authorised, branch direction/labels and annotation associations |
+| Composition and hierarchy | Source/final comparison at whole-slide and detail scale; protected geometry, grouping, reading order and primary visual weight |
+| Design-system treatment | Registered tokens/components and mandatory constraints for Governed; local preferences or original treatment for Guided/Quick |
+| Artefact and editability | Actual PowerPoint open/render check and claimed editing operations in a named application/version |
+
+Record evidence references and a short list of material differences with authorisation for each. Check whether the same visual is dominant, the reading path remains intact, labels are proportionate and functional illustrations retain their role. Pixel similarity alone is unsuitable for Restyle.
+
+Use the versioned execution-result contract when schema tooling is available. Every gate is pass, fail or unverified; accepted requires all four passes with evidence. A missing mandatory host check makes output partial, even when the package and semantic validators pass. Record source/baseline hashes, Folio commit, selected system revision (or none), renderer identity and target application. A gate record is evidence bookkeeping, not proof that a claimed review actually happened.
+
+For attached connectors, inspect endpoint associations and test moving/resizing their components. An editable line is not an attached connector. A resizable SVG does not prove component geometry editing.
 
 ## All modes
 
@@ -14,7 +27,9 @@ A reconstructed or generated deck is complete only when all criteria for the sel
 - Meaningful text remains legible: check its final colour, background, and opacity for at least 4.5:1 contrast, or 3:1 for large text. Do not rely on a token name as proof of contrast.
 - Boundaries and connectors needed to understand a diagram remain distinguishable from adjacent colours at 3:1 or better; do not rely on a slight fill change alone to define a meaningful region.
 - Meaning is not conveyed by colour alone. Check reading order and provide a text alternative for meaningful non-text content in the exported deck.
-- If a reference image is supplied, major composition, hierarchy, proportions, and visual rhythm are recognisably faithful to it unless redesign was explicitly requested.
+- If a reference image is supplied, major composition, hierarchy, proportions, and visual rhythm are recognisably faithful to it except for specific authorised deviations recorded in the composition contract. A Redesign request is not a blanket waiver.
+
+If a source fails a required accessibility check, disclose the conflict with exact conversion and obtain permission for the necessary treatment change. Do not silently restyle Quick output or claim acceptance while the conflict remains unresolved.
 
 ## Quick mode
 
@@ -28,7 +43,7 @@ Additionally verify that:
 Additionally verify that:
 - explicit user preferences are applied consistently;
 - unstated styling has not been elevated into invented governance rules;
-- with a reference, the reference remains recognisable unless the user requested a redesign;
+- with a reference, the reference remains recognisable except for recorded, specifically authorised deviations;
 - without a reference, the local style contract is derived from the user's brief/preferences and used consistently across the deck.
 
 ## Governed mode

@@ -1,19 +1,12 @@
 # Reconstruction rules
 
-## Priority order
+## Authority by concern
 
-1. Preserve semantic hierarchy.
-2. Preserve composition and relative geometry when a reference exists.
-3. Apply the selected mode's design authority.
-4. Preserve editability.
-5. Match decorative detail.
+Read `composition-contract.md` before reference reconstruction. Convert preserves treatment and composition. Restyle preserves content, relationships, relative hierarchy and slide structure while applying requested treatment. Redesign changes only explicitly authorised structure.
 
-Design authority by mode:
+The reference controls meaning and composition; the selected system or local preferences control treatment; the user authorises structural change. Mandatory conflicts must be surfaced. Archetype preferences cannot replace the reference contract.
 
-- Quick: the supplied reference.
-- Guided with a reference: the supplied reference plus explicit user preferences.
-- Guided without a reference: the user's brief/content plus explicit visual preferences and the resulting local style contract.
-- Governed: the resolved active design system, whether user-supplied or installed.
+Build a text-aware geometry draft before rendering. Choose appropriate approved typography tokens for their actual visual roles; do not enlarge titles at the expense of the principal visual. Explanatory diagrams, convergence paths and organising visual metaphors are functional content.
 
 ## Object mapping
 
@@ -36,6 +29,6 @@ Reconstruct functional foreground content before decorative layers in every mode
 
 ## Fidelity
 
-Prefer geometry corrections over raster substitution. If exact visual fidelity conflicts with editability, preserve semantic structure and editability unless the user explicitly requests a flattened visual deliverable.
+Prefer geometry corrections over raster substitution. If faithful appearance and required editability cannot both be achieved, report the conflict and the available representation choices. Do not present visibly degraded editable artwork as accepted. Distinguish editable lines, attached connectors and resizable vectors. An attached connector claim needs endpoint inspection and a move/resize test in the named target application.
 
 Do not introduce design-system constraints in Quick or Guided mode merely because Folio has governed resources available. Do not import Lumen constraints into a different supplied Governed design system unless requested.

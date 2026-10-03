@@ -4,7 +4,7 @@ Use this reference only in Governed mode.
 
 ## Source precedence
 
-When Governed mode is selected, the user must choose the active design system before composition begins. Do not silently select Lumen or any other system.
+When Governed mode is selected, use the active design system already named or supplied; ask for a selection only if it is missing. Do not silently select Lumen or any other system.
 
 When `../../design-systems/registry.json` is available in a plugin installation, offer:
 1. the installed Folio systems listed in that registry; or
@@ -20,7 +20,7 @@ Never silently replace a supplied or selected system with another system.
 
 A user-supplied system may arrive as design-token files, brand/design documentation, a template deck, component/vector assets, example slides, or a combination of these.
 
-Inspect the supplied material and establish an authority map for the rules it actually defines, for example:
+Inspect the supplied material and establish an authority map for the rules it actually defines. Distinguish mandatory constraints from default composition preferences. For Restyle, apply treatment within the source composition contract; surface a conflict with a mandatory template, canvas or minimum readable type size before generation. A system cannot silently grant permission to recompose. Rule categories include:
 
 - canvas/aspect ratio;
 - typography;

@@ -5,9 +5,9 @@ type: prd
 status: draft
 number: "001"
 date: "2026-09-28"
-version: "0.2.0"
-proposed_schema_version: "0.1.0"
-updated: "2026-09-28"
+version: "0.3.0"
+proposed_schema_version: "0.2.0"
+updated: "2026-09-29"
 owner: "Folio maintainers"
 supersedes: null
 superseded_by: null
@@ -27,6 +27,16 @@ tags:
 This is the updated product requirements document, not a declaration that every capability described below has been implemented. It preserves the original token / primitive / component / pattern / archetype model and extends it with the multimodal workflow discussed subsequently.
 
 **Central proposition:** use visual generation to explore appearance, structured reasoning to recover and preserve meaning, reusable assets to avoid repeating solved work, and a controlled rendering pipeline to produce editable presentations.
+
+### Composition preservation revision
+
+Transformation intent is independent of governance mode. Convert preserves content, composition and treatment. Restyle applies selected treatment within the reference composition. Redesign permits only explicitly authorised structural changes. Naming a system selects Governed and defaults reference work to Restyle. Confirm intent, system/preferences, protected scope and slide count together; use a system already named or supplied.
+
+For Restyle, the reference controls content, relationships and composition; the selected system controls treatment; the user authorises structural changes. Mandatory system conflicts require a specific exception or redesign permission. Default archetypes and density preferences cannot overwrite protected composition.
+
+The 0.2.0 preservation contracts require source-derived regions and normalised geometry, hierarchy, typed relationships, ambiguity and permissions before generation. Scenes retain a digest of that baseline and map source regions and relationships to output objects. Accepted results require four independent evidence-backed gates: content, composition, treatment, and artefact/editability. Unknown or unperformed mandatory checks remain unverified and produce partial results.
+
+See [ADR 001](../architecture/adr-001-composition-preserving-transformations.md), the [schema migration guide](../../schemas/README.md) and [implementation 003](../implementation/implementation-003-composition-preservation.md). The wire examples in later sections retain their illustrative 0.1.0 shape unless explicitly versioned; they do not establish the newer acceptance guarantees.
 
 ### Changes from v0.1
 
@@ -847,7 +857,7 @@ All three converge on the same semantic composition, scene and acceptance contra
 
 User instructions and approved source content govern meaning. The selected design system governs the categories it actually defines. A visual reference governs appearance only within the authorised transformation.
 
-In **Convert**, preserve the supplied composition and content; do not automatically restyle it. In **Redesign**, preserve meaning while applying the selected system and permitted recomposition. If a request combines incompatible fidelity and governance requirements, surface the conflict rather than silently choosing.
+In **Convert**, preserve supplied content, composition and treatment. In **Restyle**, preserve composition, semantic relationships, relative hierarchy and visible content per slide while applying requested treatment. In **Redesign**, preserve meaning while applying explicitly permitted structural changes; a formal system is optional and determines mode independently. If a request combines incompatible fidelity and governance requirements, surface the conflict rather than silently choosing.
 
 A generated image may omit text, alter numbers, invent labels or suggest the wrong relationships. Reconstruct exact content from the content specification, not from generated lettering. Any authorised content rewrite needs a traceable content revision.
 
