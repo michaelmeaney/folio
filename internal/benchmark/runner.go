@@ -44,13 +44,15 @@ func canvas(plugin, system string) ([]float64, error) {
 			return nil, err
 		}
 		var manifest struct {
-			Tokens    string            `json:"tokens"`
-			Resources map[string]string `json:"resources"`
+			Tokens    string `json:"tokens"`
+			Resources struct {
+				Presentation string `json:"presentation"`
+			} `json:"resources"`
 		}
 		if err = readJSON(manifestPath, &manifest, false); err != nil {
 			return nil, err
 		}
-		rel := manifest.Resources["presentation"]
+		rel := manifest.Resources.Presentation
 		modern := rel != ""
 		if !modern {
 			rel = manifest.Tokens
@@ -461,4 +463,15 @@ func Run(ctx context.Context, l *Loaded, o Options) (string, Results, error) {
 		}
 	}
 	return run, out, nil
+}
+
+// Validate the same mode-specific resources used by preparation, before launching a model.
+func ValidateSelection(l *Loaded, cases []Case) error {
+	for _, item := range cases {
+		if item.Mode == "governed" {
+			_, err := canvas(l.Plugin, l.Config.Controls.DesignSystem)
+			return err
+		}
+	}
+	return nil
 }

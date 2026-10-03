@@ -325,3 +325,67 @@ func TestConfiguredSecretsAbsentFromManifestAndLogs(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestBundledDesignSystemManifests(t *testing.T) {
+	root, err := filepath.Abs("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var registry struct {
+		Systems []struct {
+			ID string `json:"id"`
+		} `json:"systems"`
+	}
+	if err = readJSON(filepath.Join(root, "design-systems/registry.json"), &registry, false); err != nil {
+		t.Fatal(err)
+	}
+	for _, system := range registry.Systems {
+		t.Run(system.ID, func(t *testing.T) {
+			size, err := canvas(root, system.ID)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if len(size) != 2 || size[0] <= 0 || size[1] <= 0 {
+				t.Fatal("invalid canvas")
+			}
+		})
+	}
+}
+func TestPrepareBundledPresentationSuite(t *testing.T) {
+	l := fixture(t)
+	root, err := filepath.Abs("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err = readJSON(filepath.Join(root, "bench/suite.json"), &l.Suite, false); err != nil {
+		t.Fatal(err)
+	}
+	l.Plugin = root
+	l.SuiteRoot = filepath.Join(root, "bench")
+	l.Config.Controls.DesignSystem = "lumen"
+	l.Config.Controls.Repetitions = 1
+	l.CaseEvaluators = map[string][]string{}
+	l.Config.CaseEvaluators = map[string][]string{}
+	for _, c := range l.Suite.Cases {
+		l.CaseEvaluators[c.ID] = []string{"files"}
+		l.Config.CaseEvaluators[c.ID] = []string{"files"}
+	}
+	if err = ValidateSelection(l, l.Suite.Cases); err != nil {
+		t.Fatal(err)
+	}
+	_, manifest, err := Prepare(l, Options{Parallel: 1})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(manifest.Trials) != 3 || len(manifest.SystemCanvas) != 2 {
+		t.Fatal("production suite preparation incomplete")
+	}
+	l.Config.Controls.DesignSystem = "unknown"
+	if ValidateSelection(l, l.Suite.Cases) == nil {
+		t.Fatal("validation accepted unknown system")
+	}
+	// Quick-only execution must not load a selected design system.
+	if err = ValidateSelection(l, []Case{{Mode: "quick"}}); err != nil {
+		t.Fatal(err)
+	}
+}

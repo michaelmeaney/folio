@@ -63,6 +63,11 @@ func cli(args []string) int {
 		if err != nil {
 			return fail(err)
 		}
+		if args[0] != "list" {
+			if err := benchmark.ValidateSelection(l, cases); err != nil {
+				return fail(err)
+			}
+		}
 		if args[0] == "validate" {
 			if *jsonOutput {
 				_ = json.NewEncoder(os.Stdout).Encode(map[string]any{"valid": true, "cases": len(cases), "schemaVersion": 1})
