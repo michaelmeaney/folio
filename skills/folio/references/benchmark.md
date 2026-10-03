@@ -2,6 +2,8 @@
 
 Use this procedure when the user requests the standard benchmark or a plugin version comparison. The repository's `folio-bench` Go executable is the primary execution interface. `bench/README.md` describes configuration, execution and reporting; `bench/suite.json` fixes the cases. The Python runner is retained for historical runs and evaluator migration, not the primary orchestrator. A standalone installation may use an externally prepared run without the repository tooling.
 
+Only the benchmark coordinator dispatches workers. If you have already been assigned one generation or review trial in a fresh context, perform that task directly; do not dispatch another agent, wait for agents or restart the harness.
+
 ## Generation contexts
 
 Use one new agent/session per case and repetition. For Codex collaboration tools, spawn with `fork_turns="none"`; do not reuse that worker for another trial. Other hosts must start a new session without inherited conversation or a resume flag. If the host cannot establish fresh context, record the limitation and leave isolation unverified.

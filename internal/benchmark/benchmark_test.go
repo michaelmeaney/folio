@@ -389,3 +389,32 @@ func TestPrepareBundledPresentationSuite(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestArtifactCollectionExcludesLinkedRuntimeDependencies(t *testing.T) {
+	run := t.TempDir()
+	trial := filepath.Join(run, "artefacts/case-001/r01")
+	build := filepath.Join(trial, "output/build")
+	if err := os.MkdirAll(build, 0755); err != nil {
+		t.Fatal(err)
+	}
+	dependency := t.TempDir()
+	if err := os.Symlink(dependency, filepath.Join(build, "node_modules")); err != nil {
+		t.Skip(err)
+	}
+	if err := os.WriteFile(filepath.Join(build, "reconstruct.js"), []byte("source"), 0644); err != nil {
+		t.Fatal(err)
+	}
+	files, err := artifacts(run, trial)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(files) != 1 || !strings.HasSuffix(files[0].Path, "reconstruct.js") {
+		t.Fatal("source lost or dependencies retained")
+	}
+	if err := os.Symlink(dependency, filepath.Join(trial, "output/escape")); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := artifacts(run, trial); err == nil {
+		t.Fatal("unrelated escaping artifact accepted")
+	}
+}

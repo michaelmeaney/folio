@@ -92,6 +92,12 @@ func artifacts(run, trial string) ([]Artifact, error) {
 		if err != nil {
 			return err
 		}
+		if path != trial && (d.Name() == "node_modules" || d.Name() == ".venv" || d.Name() == "__pycache__" || d.Name() == ".git") {
+			if d.IsDir() {
+				return filepath.SkipDir
+			}
+			return nil
+		}
 		if d.Type()&os.ModeSymlink != 0 {
 			return fmt.Errorf("artifact symlink unsupported: %s", path)
 		}

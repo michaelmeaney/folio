@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 )
 
-const Version = "0.1.1"
+const Version = "0.1.2"
 const SchemaVersion = 1
 
 type Command struct {

@@ -38,3 +38,5 @@ The migration has not retired `bench/runner.py`: representative real generated-d
 ## 0.4.1 production preflight correction
 
 The first real `run` failed because Go decoded every design-system resource as a string, while canonical `resources.tokens` is an array. The harness now decodes only the presentation resource it consumes. `validate` checks the same governed resource resolution before execution. Regression tests cover all six real system manifests and preparation of the bundled three-case presentation suite with a synthetic source; the private image is not required by CI. Harness version is 0.1.1 and plugin version is 0.4.1. Earlier synthetic execution evidence did not prove the real presentation run.
+
+The first live generation also exposed worker-role ambiguity and linked runtime dependencies under build output. Version 0.4.2/harness 0.1.2 assigns the fresh session directly to generation/review, and excludes node_modules/virtualenv/cache/Git dependencies from artifact retention while retaining reconstruction source and rejecting other symlinks.
