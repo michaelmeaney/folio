@@ -1,0 +1,7 @@
+{
+ "schemaVersion":1,"suite":"suite.json","pluginRoot":"../..","output":"../runs/ci",
+ "controls":{"model":"synthetic","effort":"none","surface":"ci","context":"fresh","designSystem":"","repetitions":2,"timeoutSeconds":30},
+ "executor":"synthetic","commands":{"synthetic":{"argv":["{config}/../../dist/bench-fixture"]}},
+ "evaluators":{"files":{"kind":"files","version":"1.0.0","files":["generated.txt"]}},
+ "caseEvaluators":{"smoke-001":["files"]},"categories":{"smoke-001":"harness"},"comparison":{"maxScoreDrop":0}
+}

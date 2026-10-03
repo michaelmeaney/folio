@@ -1,0 +1,1 @@
+{"schemaVersion":1,"id":"folio-harness-ci","version":"1.0.0","reference":"reference.json","cases":[{"id":"smoke-001","category":"harness","mode":"quick","operation":"convert","slides":1,"exactCopy":false,"prompt":"prompt.md","criteria":[]}]}

@@ -1,6 +1,6 @@
 {
   "name": "folio",
-  "version": "0.3.0",
+  "version": "0.4.2",
   "description": "Multimodal presentation engineering from quick reference reconstruction to governed editable PowerPoint decks.",
   "author": {
     "name": "Michael Meaney",

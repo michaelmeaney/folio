@@ -38,3 +38,7 @@ If an operation fails, mark that editing check and the artefact gate failed. If 
 Write the gate reports, actual source/final renders, actual PowerPoint and editing evidence to the execution directory. Reference local files and SHA-256 digests from the execution result. Include the source and final render in the composition gate, and fingerprint the delivered PowerPoint and render in the artefact gate. Validate the whole connected bundle with `scripts/folio_schema.py`.
 
 A successful validator result confirms record consistency only. Promote a generated target into examples or a reusable component into an approved registry only after explicit review. Update implementation 003 with the actual host, renderer, results and any remaining limitations.
+
+## Standard real-reference benchmark
+
+The local reference under `bench/reference/` now supports fixed Quick Convert, Governed Restyle and five-slide Governed Redesign cases. Use the [benchmark runner and review instructions](../../bench/README.md) to freeze inputs, execute independent trials and compare versions. Keep the original image local; the synthetic fixture remains the public automated regression input. The benchmark does not replace the target-application checks above.
