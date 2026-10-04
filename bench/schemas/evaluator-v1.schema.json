@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://folio.local/benchmark/evaluator-v1.schema.json",
+  "title": "Folio benchmark evaluator protocol v1",
+  "$defs": {
+    "status": {
+      "enum": [
+        "pass",
+        "fail",
+        "error",
+        "timeout",
+        "skipped",
+        "unverified"
+      ]
+    },
+    "violation": {
+      "type": "object",
+      "required": [
+        "id",
+        "message"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "input": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "runDirectory",
+        "trialDirectory",
+        "trialPath",
+        "case",
+        "reference",
+        "controls",
+        "systemCanvas"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "configurationDirectory": {
+          "type": "string"
+        },
+        "runDirectory": {
+          "type": "string"
+        },
+        "trialDirectory": {
+          "type": "string"
+        },
+        "trialPath": {
+          "type": "string"
+        },
+        "case": {
+          "type": "object"
+        },
+        "reference": {
+          "type": "object"
+        },
+        "controls": {
+          "type": "object"
+        },
+        "systemCanvas": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "status"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "score": {
+          "type": "number"
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/violation"
+          }
+        },
+        "diagnostics": {},
+        "contextIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "runtime": {},
+        "dimensions": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": [
+              "pass",
+              "needs-work",
+              "unverified"
+            ]
+          }
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/violation"
+          }
+        },
+        "fullAcceptanceStatus": {
+          "enum": [
+            "accepted",
+            "failed",
+            "partial",
+            "not-run"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$ref": "#/$defs/result"
+}

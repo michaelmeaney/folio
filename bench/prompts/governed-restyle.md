@@ -1,0 +1,4 @@
+Use Folio Governed Restyle with {{design_system}} to recreate the supplied reference as exactly one editable PowerPoint slide.
+Apply the selected system's visual treatment while preserving the source content, semantic relationships, composition, reading order and relative visual hierarchy. Keep the principal diagram and explanatory illustrations prominent. Choose approved typography tokens within the available regions.
+Do not rewrite copy, collapse processing routes, replace the main diagram with a generic icon, move visible content into notes, recompose the slide or split it. A system name does not authorise those changes.
+Use the selected system's declared canvas. Uniform fitting with minimal padding is permitted to reconcile its ratio with the source; cropping, stretching and structural rearrangement are not. Surface other mandatory conflicts and return partial output if they remain unresolved.

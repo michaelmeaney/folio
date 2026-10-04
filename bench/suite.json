@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "id": "folio-presentation-bench",
+  "version": "1.2.0",
+  "reference": "reference/reference.json",
+  "defaults": {
+    "designSystem": "lumen",
+    "repetitions": 1,
+    "timeoutSeconds": 1200
+  },
+  "cases": [
+    {
+      "id": "quick-convert",
+      "mode": "quick",
+      "operation": "convert",
+      "slides": 1,
+      "prompt": "prompts/quick-convert.md",
+      "exactCopy": true,
+      "criteria": [
+        {
+          "id": "source-facts",
+          "gate": "content",
+          "description": "Every required fact remains visible; no invented implications or facts.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "route-meaning",
+          "gate": "content",
+          "description": "Structured parsing, unstructured inference and existing-diagram rendering stay distinct.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "no-flattening",
+          "gate": "artefact",
+          "description": "Meaningful text and reconstructable diagrams are editable, with no full-slide raster substitution.",
+          "dimension": "editability"
+        },
+        {
+          "id": "open-render",
+          "gate": "artefact",
+          "description": "The actual PowerPoint opens without repair and every slide renders correctly.",
+          "dimension": "verification",
+          "advisory": true
+        },
+        {
+          "id": "editing",
+          "gate": "artefact",
+          "description": "Native text is editable and major elements are independently movable; inspect native geometry/grouping. Record target-application probes separately; attached connectors are optional unless explicitly required.",
+          "dimension": "editability"
+        },
+        {
+          "id": "accessibility",
+          "gate": "treatment",
+          "description": "Final contrast, reading order and text alternatives satisfy the applicable Folio acceptance rules.",
+          "dimension": "accessibility",
+          "advisory": true
+        },
+        {
+          "id": "runtime",
+          "gate": "artefact",
+          "description": "The frozen plugin and recorded model, effort and execution surface were actually used.",
+          "dimension": "verification",
+          "advisory": true
+        },
+        {
+          "id": "composition",
+          "gate": "composition",
+          "description": "Source region arrangement, reading order and grouping remain recognisable.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "primary-visual",
+          "gate": "composition",
+          "description": "The architecture canvas and outcome illustrations retain explanatory role and relative visual weight. Illustrative internal geometry needs recognisability, not exact technical topology.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "title-balance",
+          "gate": "composition",
+          "description": "The headline does not expand at the expense of functional visuals.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "source-comparison",
+          "gate": "composition",
+          "description": "Source and final slide have been compared at whole-slide and detail scale; deviations are recorded.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "visible-copy",
+          "gate": "content",
+          "description": "All source copy and repeated risk labels stay visible on the single slide.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "source-treatment",
+          "gate": "treatment",
+          "description": "Original typography, colours and illustration treatment are preserved without loading a design system.",
+          "dimension": "visual-fidelity"
+        }
+      ],
+      "reviewPolicy": "practical-v1",
+      "requireAttachedConnectors": false
+    },
+    {
+      "id": "governed-restyle",
+      "mode": "governed",
+      "operation": "restyle",
+      "slides": 1,
+      "prompt": "prompts/governed-restyle.md",
+      "exactCopy": true,
+      "criteria": [
+        {
+          "id": "source-facts",
+          "gate": "content",
+          "description": "Every required fact remains visible; no invented implications or facts.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "route-meaning",
+          "gate": "content",
+          "description": "Structured parsing, unstructured inference and existing-diagram rendering stay distinct.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "no-flattening",
+          "gate": "artefact",
+          "description": "Meaningful text and reconstructable diagrams are editable, with no full-slide raster substitution.",
+          "dimension": "editability"
+        },
+        {
+          "id": "open-render",
+          "gate": "artefact",
+          "description": "The actual PowerPoint opens without repair and every slide renders correctly.",
+          "dimension": "verification",
+          "advisory": true
+        },
+        {
+          "id": "editing",
+          "gate": "artefact",
+          "description": "Native text is editable and major elements are independently movable; inspect native geometry/grouping. Record target-application probes separately; attached connectors are optional unless explicitly required.",
+          "dimension": "editability"
+        },
+        {
+          "id": "accessibility",
+          "gate": "treatment",
+          "description": "Final contrast, reading order and text alternatives satisfy the applicable Folio acceptance rules.",
+          "dimension": "accessibility",
+          "advisory": true
+        },
+        {
+          "id": "runtime",
+          "gate": "artefact",
+          "description": "The frozen plugin and recorded model, effort and execution surface were actually used.",
+          "dimension": "verification",
+          "advisory": true
+        },
+        {
+          "id": "composition",
+          "gate": "composition",
+          "description": "Source region arrangement, reading order and grouping remain recognisable.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "primary-visual",
+          "gate": "composition",
+          "description": "The architecture canvas and outcome illustrations retain explanatory role and relative visual weight. Illustrative internal geometry needs recognisability, not exact technical topology.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "title-balance",
+          "gate": "composition",
+          "description": "The headline does not expand at the expense of functional visuals.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "source-comparison",
+          "gate": "composition",
+          "description": "Source and final slide have been compared at whole-slide and detail scale; deviations are recorded.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "visible-copy",
+          "gate": "content",
+          "description": "All source copy and repeated risk labels stay visible on the single slide.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "system-treatment",
+          "gate": "treatment",
+          "description": "The selected system is applied within source composition; mandatory conflicts are disclosed, never silently overridden.",
+          "dimension": "visual-fidelity"
+        }
+      ],
+      "reviewPolicy": "practical-v1",
+      "requireAttachedConnectors": false
+    },
+    {
+      "id": "governed-story",
+      "mode": "governed",
+      "operation": "redesign",
+      "slides": 5,
+      "prompt": "prompts/governed-story.md",
+      "exactCopy": false,
+      "criteria": [
+        {
+          "id": "source-facts",
+          "gate": "content",
+          "description": "Every required fact remains visible; no invented implications or facts.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "route-meaning",
+          "gate": "content",
+          "description": "Structured parsing, unstructured inference and existing-diagram rendering stay distinct.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "no-flattening",
+          "gate": "artefact",
+          "description": "Meaningful text and reconstructable diagrams are editable, with no full-slide raster substitution.",
+          "dimension": "editability"
+        },
+        {
+          "id": "open-render",
+          "gate": "artefact",
+          "description": "The actual PowerPoint opens without repair and every slide renders correctly.",
+          "dimension": "verification",
+          "advisory": true
+        },
+        {
+          "id": "editing",
+          "gate": "artefact",
+          "description": "Native text is editable and major elements are independently movable; inspect native geometry/grouping. Record target-application probes separately; attached connectors are optional unless explicitly required.",
+          "dimension": "editability"
+        },
+        {
+          "id": "accessibility",
+          "gate": "treatment",
+          "description": "Final contrast, reading order and text alternatives satisfy the applicable Folio acceptance rules.",
+          "dimension": "accessibility",
+          "advisory": true
+        },
+        {
+          "id": "runtime",
+          "gate": "artefact",
+          "description": "The frozen plugin and recorded model, effort and execution surface were actually used.",
+          "dimension": "verification",
+          "advisory": true
+        },
+        {
+          "id": "story-arc",
+          "gate": "composition",
+          "description": "The deck has a coherent beginning, progression and conclusion, rather than five disconnected crops.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "meaningful-decomposition",
+          "gate": "composition",
+          "description": "Each slide has one clear purpose and the ordering explains how inputs lead to the model and outcomes.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "story-coverage",
+          "gate": "content",
+          "description": "Splitting and rewriting retain every source fact on visible slides; notes alone do not count.",
+          "dimension": "content-meaning"
+        },
+        {
+          "id": "cross-slide-consistency",
+          "gate": "treatment",
+          "description": "Recurring concepts use consistent names, styling and visual identity across the deck.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "model-and-branches",
+          "gate": "composition",
+          "description": "The architecture model is explained meaningfully and all three outcome branches remain distinct.",
+          "dimension": "visual-fidelity"
+        },
+        {
+          "id": "system-treatment",
+          "gate": "treatment",
+          "description": "The selected system governs the deck consistently, including mandatory readability constraints.",
+          "dimension": "visual-fidelity"
+        }
+      ],
+      "reviewPolicy": "practical-v1",
+      "requireAttachedConnectors": false
+    }
+  ]
+}

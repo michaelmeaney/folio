@@ -1,0 +1,1 @@
+Synthetic harness input; no private image or model required.

@@ -29,3 +29,46 @@ jobs:
         run: |
           python3 -m pip install -r requirements-schema.txt
           python3 -m unittest discover -s tests -v
+
+  benchmark:
+    name: Benchmark harness (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Go
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+          cache: false
+      - name: Test and build the benchmark
+        run: |
+          go test -race ./...
+          go vet ./...
+          mkdir -p dist
+          go build -trimpath -o dist/folio-bench ./cmd/folio-bench
+          go build -o dist/bench-fixture ./bench/ci
+      - name: Execute the shared benchmark interface
+        run: |
+          dist/folio-bench validate --config bench/ci/benchmark.json
+          dist/folio-bench run --config bench/ci/benchmark.json --parallel 2 --json > dist/benchmark-results.json
+          dist/folio-bench report dist/benchmark-results.json
+      - name: Build portable release archives
+        if: matrix.os == 'ubuntu-latest'
+        run: python3 scripts/build_bench.py
+      - name: Retain benchmark evidence and portable binaries
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: folio-bench-${{ matrix.os }}
+          path: |
+            dist/benchmark-results.json
+            bench/runs/ci/
+            dist/folio-bench-release/
+          if-no-files-found: warn

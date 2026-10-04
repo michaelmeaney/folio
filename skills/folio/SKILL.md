@@ -129,3 +129,7 @@ Across all modes:
 For reference work, establish the composition contract before choosing an archetype; an archetype must fit protected geometry. Functional diagrams and explanatory illustrations retain their visual weight. Surface mandatory system conflicts instead of silently splitting or recomposing.
 
 For execution details, read `references/workflow.md` and `references/reconstruction.md`. For completion criteria, read `references/acceptance.md`.
+
+## Benchmark execution
+
+For a requested plugin benchmark or version comparison, read `references/benchmark.md`. Dispatch each generation trial and each independent review into a fresh context. Keep coordination in the parent; provide only the fixed task inputs to each worker. This applies to benchmark runs, not every ordinary presentation request.
