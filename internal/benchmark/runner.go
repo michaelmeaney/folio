@@ -194,8 +194,8 @@ func Prepare(l *Loaded, o Options) (string, Manifest, error) {
 				return run, m, err
 			}
 			instruction := strings.ReplaceAll(string(brief), "{{design_system}}", l.Config.Controls.DesignSystem)
-			prompt := fmt.Sprintf("# Folio benchmark %s repetition %d\n\nYou are the generation worker for this one trial, already in a fresh session. Generate it directly here; do not dispatch another worker, wait for agents, or invoke the benchmark harness. Read and execute the frozen Skill at %s. Reference image: %s. Output directory: %s.\n\n%s\n\nThe operation, mode, permissions, system where applicable and slide count are confirmed. This generation session has no inherited conversation. Record actual context ID, inheritance, model, effort and runtime in output/execution-notes.md. Do not inspect other trials or the reviewer answer key. Do not modify frozen inputs. Produce output/deck.pptx and actual renders at output/render/slide-01.png etc., at least 1280 pixels wide. Keep source analysis and reconstruction metadata; unavailable measurements remain unobserved. Do not fill review.json. Paths beginning output/ are relative to %s.\n", c.ID, rep, filepath.Join(inputs, "plugin/skills/folio/SKILL.md"), filepath.Join(inputs, "reference.png"), filepath.Join(trial, "output"), instruction, trial)
-			reviewPrompt := fmt.Sprintf("# Independent review %s repetition %d\n\nYou are the independent review worker, already in a fresh session with no inherited conversation. Review this trial directly; do not dispatch workers or wait for agents. Read %s and %s for this case's rubric/answer key; inspect %s and every actual PowerPoint/render under %s. Follow frozen Folio acceptance rules at %s. Fill %s with reviewer identity, verified distinct generation/review context IDs (inheritance none), actual runtime, deck/render hashes and evidence-backed pass/fail/unverified for every criterion and fact. Review visible content, relationships, composition, accessibility and story directly. Open and edit a copy in the named application; unavailable checks remain unverified. Do not accept generator claims as evidence or inspect other trials. Keep review evidence under output/review/.\n", c.ID, rep, filepath.Join(inputs, "suite.json"), filepath.Join(inputs, "reference.json"), filepath.Join(inputs, "reference.png"), filepath.Join(trial, "output"), filepath.Join(inputs, "plugin/skills/folio/references/acceptance.md"), filepath.Join(trial, "review.json"))
+			prompt := fmt.Sprintf("# Folio benchmark %s repetition %d\n\nYou are the generation worker for this one trial, already in a fresh session. Generate it directly here; do not dispatch another worker, wait for agents, or invoke the benchmark harness. Read and execute the frozen Skill at %s. Reference image: %s. Output directory: %s.\n\n%s\n\nThe operation, mode, permissions, system where applicable and slide count are confirmed. This generation session has no inherited conversation. Record actual context ID, inheritance, model, effort and runtime in output/execution-notes.md. Do not inspect other trials or the reviewer answer key. Do not modify frozen inputs. Produce output/deck.pptx and actual renders at output/render/slide-01.png etc., at least 1280 pixels wide. Keep source analysis and reconstruction metadata; unavailable measurements remain unobserved. Prioritize editable native text, independently movable major elements, and recognizable visual fidelity. Attached connectors are optional unless this task explicitly requires them; disclose unattached lines and image crops. Distinguish illustrative internal artwork from relationships carrying technical meaning. Report full acceptance gaps separately from this practical milestone. Do not fill review.json. Paths beginning output/ are relative to %s.\n", c.ID, rep, filepath.Join(inputs, "plugin/skills/folio/SKILL.md"), filepath.Join(inputs, "reference.png"), filepath.Join(trial, "output"), instruction, trial)
+			reviewPrompt := fmt.Sprintf("# Independent review %s repetition %d\n\nYou are the independent review worker, already in a fresh session with no inherited conversation. Review this trial directly; do not dispatch workers or wait for agents. Read %s and %s for this case's rubric/answer key; inspect %s and every actual PowerPoint/render under %s. Follow frozen Folio acceptance rules at %s. Fill %s with reviewer identity, verified distinct generation/review context IDs (inheritance none), actual runtime, deck/render hashes and evidence-backed pass/fail/unverified for every criterion and fact. Review visible content, relationships, composition, accessibility and story directly. Open and edit a copy in the named application; unavailable checks remain unverified. Do not accept generator claims as evidence or inspect other trials. Keep review evidence under output/review/. Apply the case reviewPolicy, region purpose, relationshipScope and criterion dimension/advisory settings. Report visual fidelity, content/meaning, practical editability, and accessibility separately. Internal arrows in illustrative artwork do not assert system topology: record harmless differences as minor observations, not semantic failures. For each failed criterion record severity=minor or material, purpose, region, notes and evidence; missing required content, unreadable text, changed technical meaning and flattened core content are material. Practical editability means native editable text and independently movable major elements; inspect package geometry and grouping, disclose crops and unattached lines. Attached connectors and move-node tests are optional capabilities unless requireAttachedConnectors is true; never claim them without testing. Record unavailable target-application checks as unverified without treating them as universal blockers. Source accessibility conflicts stay visible in the accessibility dimension without silently restyling Quick output.\n", c.ID, rep, filepath.Join(inputs, "suite.json"), filepath.Join(inputs, "reference.json"), filepath.Join(inputs, "reference.png"), filepath.Join(trial, "output"), filepath.Join(inputs, "plugin/skills/folio/references/acceptance.md"), filepath.Join(trial, "review.json"))
 			for name, text := range map[string]string{"prompt.md": prompt, "review-prompt.md": reviewPrompt} {
 				if err = os.WriteFile(filepath.Join(trial, name), []byte(text), 0644); err != nil {
 					return run, m, err
@@ -262,11 +262,22 @@ func reviewTemplate(c Case, ref json.RawMessage) map[string]any {
 	for _, fact := range source.Facts {
 		facts[fact.ID] = pending()
 	}
-	return map[string]any{"reviewer": "", "runtime": map[string]string{"model": "", "effort": "", "surface": "", "renderer": "", "application": ""}, "contexts": map[string]any{"generation": map[string]string{"id": "", "inheritance": ""}, "review": map[string]string{"id": "", "inheritance": ""}}, "deckSha256": "", "renderSha256": map[string]string{}, "criteria": criteria, "facts": facts}
+	return map[string]any{"reviewer": "", "runtime": map[string]string{"model": "", "effort": "", "surface": "", "renderer": "", "application": ""}, "contexts": map[string]any{"generation": map[string]string{"id": "", "inheritance": ""}, "review": map[string]string{"id": "", "inheritance": ""}}, "deckSha256": "", "renderSha256": map[string]string{}, "criteria": criteria, "facts": facts, "capabilities": map[string]any{"attachedConnectors": pending(), "targetApplicationEditing": pending()}}
 }
 func executeTrial(ctx context.Context, l *Loaded, run string, m Manifest, t Trial) Result {
 	start := time.Now()
-	ctx, cancelTrial := context.WithTimeout(ctx, time.Duration(l.Config.Controls.TimeoutSeconds)*time.Second)
+	budget := l.Config.Controls.TimeoutSeconds
+	if l.Config.Controls.ReviewTimeoutSeconds > 0 {
+		budget += l.Config.Controls.ReviewTimeoutSeconds
+		for _, name := range l.CaseEvaluators[t.CaseID] {
+			n := l.Config.Evaluators[name].Command.TimeoutSeconds
+			if n <= 0 {
+				n = l.Config.Controls.TimeoutSeconds
+			}
+			budget += n
+		}
+	}
+	ctx, cancelTrial := context.WithTimeout(ctx, time.Duration(budget)*time.Second)
 	defer cancelTrial()
 	result := Result{CaseID: t.CaseID, Repetition: t.Repetition, Status: "skipped", Evaluations: map[string]EvaluationResult{}, EvaluatorProcesses: map[string]Process{}}
 	trial := filepath.Join(run, filepath.FromSlash(t.Path))
@@ -288,7 +299,9 @@ func executeTrial(ctx context.Context, l *Loaded, run string, m Manifest, t Tria
 		result.Diagnostic = err.Error()
 		return result
 	}
-	result.Execution = runProcess(ctx, l.Config.Commands[l.Config.Executor], prompt, filepath.Join(trial, "output"), filepath.Join(trial, "logs"), "generation", values(input), l.Secrets, l.Config.Controls.TimeoutSeconds)
+	generationCtx, cancelGeneration := context.WithTimeout(ctx, time.Duration(l.Config.Controls.TimeoutSeconds)*time.Second)
+	result.Execution = runProcess(generationCtx, l.Config.Commands[l.Config.Executor], prompt, filepath.Join(trial, "output"), filepath.Join(trial, "logs"), "generation", values(input), l.Secrets, l.Config.Controls.TimeoutSeconds)
+	cancelGeneration()
 	legacyStatus := "failed"
 	if result.Execution.Status == "pass" {
 		legacyStatus = "completed"
@@ -305,13 +318,19 @@ func executeTrial(ctx context.Context, l *Loaded, run string, m Manifest, t Tria
 			result.Status = "error"
 			result.Diagnostic = e.Error()
 		} else {
-			p := runProcess(ctx, l.Config.Commands[l.Config.Reviewer], reviewPrompt, trial, filepath.Join(trial, "logs"), "review", values(input), l.Secrets, l.Config.Controls.TimeoutSeconds)
+			reviewBudget := l.Config.Controls.ReviewTimeoutSeconds
+			if reviewBudget == 0 {
+				reviewBudget = l.Config.Controls.TimeoutSeconds
+			}
+			reviewCtx, cancelReview := context.WithTimeout(ctx, time.Duration(reviewBudget)*time.Second)
+			p := runProcess(reviewCtx, l.Config.Commands[l.Config.Reviewer], reviewPrompt, trial, filepath.Join(trial, "logs"), "review", values(input), l.Secrets, reviewBudget)
+			cancelReview()
 			result.Review = &p
 			result.Status = p.Status
 		}
 	}
 	// Evaluate failed generation too, to preserve judgment/runtime evidence, except after timeout/cancellation.
-	if result.Status != "timeout" && ctx.Err() == nil {
+	if (result.Status != "timeout" || (result.Review != nil && l.Config.Controls.ReviewTimeoutSeconds > 0)) && ctx.Err() == nil {
 		for _, name := range l.CaseEvaluators[c.ID] {
 			e := l.Config.Evaluators[name]
 			var evaluator Evaluator

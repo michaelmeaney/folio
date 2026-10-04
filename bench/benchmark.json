@@ -10,7 +10,8 @@
     "context": "fresh",
     "designSystem": "lumen",
     "repetitions": 1,
-    "timeoutSeconds": 1200
+    "timeoutSeconds": 1200,
+    "reviewTimeoutSeconds": 900
   },
   "executor": "generation",
   "commands": {
@@ -54,7 +55,7 @@
   "evaluators": {
     "presentation": {
       "kind": "external",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "command": {
         "argv": [
           "python3",

@@ -29,6 +29,9 @@ func TestHelperProcess(t *testing.T) {
 		os.Exit(90)
 	}
 	switch args[idx] {
+	case "paced":
+		time.Sleep(1200 * time.Millisecond)
+		_ = os.WriteFile("generated.txt", []byte("isolated fixture"), 0644)
 	case "generate":
 		b, _ := os.ReadFile(os.Getenv("FOLIO_PROMPT"))
 		_ = b
@@ -54,6 +57,8 @@ func TestHelperProcess(t *testing.T) {
 		fmt.Print(`{"schemaVersion":1,"status":"pass","score":0.9}`)
 	case "malformed":
 		fmt.Print("not JSON")
+	case "dimensions":
+		fmt.Print(`{"schemaVersion":1,"status":"pass","dimensions":{"visual-fidelity":"pass","content-meaning":"pass","editability":"pass","accessibility":"needs-work","verification":"unverified"},"observations":[{"id":"illustration","message":"Minor illustrative arrow difference"}]}`)
 	case "secret":
 		secret := os.Getenv("CHILD_SECRET")
 		fmt.Print(secret[:3])
@@ -416,5 +421,54 @@ func TestArtifactCollectionExcludesLinkedRuntimeDependencies(t *testing.T) {
 	}
 	if _, err := artifacts(run, trial); err == nil {
 		t.Fatal("unrelated escaping artifact accepted")
+	}
+}
+
+func TestIndependentReviewBudgetAndTimeoutEvidence(t *testing.T) {
+	l := fixture(t)
+	l.Config.Controls.Repetitions = 1
+	l.Config.Controls.TimeoutSeconds = 3
+	l.Config.Controls.ReviewTimeoutSeconds = 3
+	l.Config.Commands["generation"] = helper("paced")
+	l.Config.Commands["review"] = helper("paced")
+	l.Config.Reviewer = "review"
+	_, results, err := Run(context.Background(), l, Options{Parallel: 1})
+	if err != nil || results.Results[0].Status != "pass" {
+		t.Fatalf("separate phase budgets: %v %+v", err, results)
+	}
+	l.Config.Commands["review"] = helper("hang")
+	l.Config.Controls.ReviewTimeoutSeconds = 1
+	_, results, err = Run(context.Background(), l, Options{Parallel: 1})
+	r := results.Results[0]
+	if err != nil || r.Status != "timeout" || r.Execution.Status != "pass" || r.Review.Status != "timeout" || len(r.Artifacts) == 0 || r.Evaluations["files"].Status != "pass" {
+		t.Fatalf("review timeout must retain generation and evaluation: %v %+v", err, r)
+	}
+	var out bytes.Buffer
+	Summary(&out, results)
+	if !strings.Contains(out.String(), "generation: pass · review: timeout") {
+		t.Fatal(out.String())
+	}
+}
+
+func TestDimensionProtocolReportsAndComparison(t *testing.T) {
+	l := fixture(t)
+	l.Config.Controls.Repetitions = 1
+	l.Config.Evaluators["dimensions"] = EvaluatorConfig{Kind: "external", Version: "test", Command: helper("dimensions")}
+	l.CaseEvaluators["test-001"] = []string{"dimensions"}
+	run, results, err := Run(context.Background(), l, Options{Parallel: 1})
+	if err != nil || results.Results[0].Status != "pass" {
+		t.Fatalf("dimension protocol: %v %+v", err, results)
+	}
+	var out bytes.Buffer
+	html := filepath.Join(run, "report.html")
+	if err := Report(filepath.Join(run, "results.json"), html, &out); err != nil {
+		t.Fatal(err)
+	}
+	data, _ := os.ReadFile(html)
+	if !strings.Contains(out.String(), "accessibility: needs-work") || !strings.Contains(string(data), "Minor illustrative arrow difference") {
+		t.Fatalf("missing dimension reporting: %s %s", out.String(), data)
+	}
+	if _, code := Compare(results, results); code != 3 {
+		t.Fatalf("missing actual runtime must prevent controlled comparison: %d", code)
 	}
 }

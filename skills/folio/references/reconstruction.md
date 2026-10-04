@@ -29,6 +29,8 @@ Reconstruct functional foreground content before decorative layers in every mode
 
 ## Fidelity
 
+Distinguish illustrative artwork from diagrams asserting technical relationships. Preserve the recognisability and visual weight of illustrations; preserve exact relationship direction and labels where they carry meaning. Do not infer a technical specification from unlabelled internal artwork. Editable lines are a useful representation; attached connectors are a further capability, required only when the user or task explicitly calls for node movement with maintained connections.
+
 Prefer geometry corrections over raster substitution. If faithful appearance and required editability cannot both be achieved, report the conflict and the available representation choices. Do not present visibly degraded editable artwork as accepted. Distinguish editable lines, attached connectors and resizable vectors. An attached connector claim needs endpoint inspection and a move/resize test in the named target application.
 
 Do not introduce design-system constraints in Quick or Guided mode merely because Folio has governed resources available. Do not import Lumen constraints into a different supplied Governed design system unless requested.

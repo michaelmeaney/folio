@@ -131,6 +131,9 @@ func Load(configPath string, requireReference bool) (*Loaded, error) {
 	if c.Controls.Context != "fresh" || c.Controls.Repetitions < 1 || c.Controls.Repetitions > 10 || c.Controls.TimeoutSeconds < 1 || c.Controls.Model == "" || c.Controls.Effort == "" || c.Controls.Surface == "" {
 		return nil, fmt.Errorf("explicit fresh-context model/effort/surface, repetitions 1..10 and timeout are required")
 	}
+	if c.Controls.ReviewTimeoutSeconds < 0 {
+		return nil, fmt.Errorf("review timeout must be nonnegative")
+	}
 	if c.Comparison.MaxScoreDrop < 0 || math.IsNaN(c.Comparison.MaxScoreDrop) {
 		return nil, fmt.Errorf("invalid score regression threshold")
 	}
@@ -252,6 +255,16 @@ func Load(configPath string, requireReference bool) (*Loaded, error) {
 			return nil, fmt.Errorf("invalid or duplicate case ID %s", item.ID)
 		}
 		seen[item.ID] = true
+		if item.ReviewPolicy != "" && item.ReviewPolicy != "practical-v1" {
+			return nil, fmt.Errorf("unsupported review policy for %s", item.ID)
+		}
+		if item.ReviewPolicy == "practical-v1" {
+			for _, criterion := range item.Criteria {
+				if !map[string]bool{"visual-fidelity": true, "content-meaning": true, "editability": true, "accessibility": true, "verification": true}[criterion.Dimension] {
+					return nil, fmt.Errorf("invalid review dimension for %s/%s", item.ID, criterion.ID)
+				}
+			}
+		}
 		if item.Slides < 1 || !map[string]bool{"quick": true, "guided": true, "governed": true}[item.Mode] {
 			return nil, fmt.Errorf("invalid mode/slide count for %s", item.ID)
 		}

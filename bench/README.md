@@ -42,7 +42,7 @@ dist/folio-bench run --category governed --verbose
 
 Change trusted command registry entries to use another executor. Commands are argv arrays with no implicit shell; stdin carries the prepared generation/review brief. One fresh process/session is started per task. Never configure `resume` or pass accumulated parent conversation. When using collaboration agents directly, use `fork_turns="none"` for each generation and each review. The reviewer must verify actual context IDs and runtime; a process start alone does not establish absent conversation inheritance.
 
-Start with one repetition for a smoke run. Use three repetitions for release comparisons. Set controls explicitly: model, effort, surface, design system, repetition count and timeout. `--parallel` is bounded to 1..64, defaults to one and controls complete trial pipelines. Each trial's timeout bounds generation plus review plus evaluation; individual command timeouts can be shorter. Ctrl-C cancels running subprocess trees and persists remaining cases as skipped. Failures leave all artifacts and logs in place.
+Start with one repetition for a smoke run. Use three repetitions for release comparisons. Set controls explicitly: model, effort, surface, design system, repetition count and timeout. `--parallel` is bounded to 1..64, defaults to one and controls complete trial pipelines. With `controls.reviewTimeoutSeconds` set, `timeoutSeconds` bounds generation and `reviewTimeoutSeconds` independently bounds review; each evaluator then receives its own bounded command allowance. The overall pipeline budget is their sum. The standard configuration uses 1200 seconds for generation and 900 for review. Omitting the review setting retains the legacy shared trial timeout. Individual command timeouts can be shorter. Ctrl-C cancels running subprocess trees and persists remaining cases as skipped. Failures leave all artifacts and logs in place.
 
 Every run gets a new directory:
 
@@ -110,3 +110,13 @@ dist/folio-bench run --config bench/ci/benchmark.json --parallel 2
 The CI configuration uses deterministic synthetic files, no model calls and no private slide. It validates orchestration, not Folio presentation quality. macOS and Linux CI use the same executable and commands as developers.
 
 The [historical Python procedure](legacy-python.md) remains available for existing frozen Python runs. Do not compare its run.json/report.json directly with Go results.json. Keep the Python runner until all PRD migration gates, including real presentation parity and observed macOS/Linux execution, have evidence. See [implementation 005](../docs/implementation/implementation-005-go-benchmark-harness.md).
+
+## Practical review policy
+
+Suite 1.2.0 uses `practical-v1`. Text/HTML reports show visual fidelity, content/meaning, practical editability and accessibility as pass, needs-work or unverified; generation/review process statuses remain separate. The practical status gates visual fidelity, content/meaning and editability. Accessibility observations and target-application/runtime verification remain visible; a practical pass does not assert full Folio acceptance. Strict legacy gate results are retained in evaluator diagnostics as `fullAcceptanceStatus`. Missing runtime evidence prevents a controlled comparison.
+
+Reference regions declare illustrative, informational or technical purpose and relationship scope. Reviewers record severity, purpose, region, notes and hashed evidence. Minor illustrative geometry differences are observations; missing required content, unreadability, changed technical meaning and flattened core content block. Exact diagram topology applies where it communicates meaning.
+
+Native editable text and independently movable major elements establish the practical editability target; disclose crops and unattached lines. Connector attachment is optional unless the case sets `requireAttachedConnectors: true`, which requires an evidenced `capabilities.attachedConnectors` review record. Shape counts alone do not prove practical editing. Target-application checks remain unverified when unavailable.
+
+A review timeout preserves generation status, artefacts and partial evaluator findings while keeping the overall execution status timeout. Historical runs retain their frozen rubric; do not overwrite their judgments.

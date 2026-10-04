@@ -193,7 +193,9 @@
         0.9,
         0.09
       ],
-      "role": "headline"
+      "role": "headline",
+      "purpose": "informational",
+      "relationshipScope": "Preserve visible copy and hierarchy."
     },
     {
       "id": "inputs",
@@ -203,7 +205,9 @@
         0.17,
         0.76
       ],
-      "role": "input illustration and description"
+      "role": "input illustration and description",
+      "purpose": "illustrative",
+      "relationshipScope": "Internal unlabelled geometry illustrates a drawing or outcome; exact internal arrow topology is not asserted."
     },
     {
       "id": "processing",
@@ -213,7 +217,9 @@
         0.35,
         0.28
       ],
-      "role": "three distinct processing bands"
+      "role": "three distinct processing bands",
+      "purpose": "informational",
+      "relationshipScope": "The three named processing routes and convergence are meaningful."
     },
     {
       "id": "inference",
@@ -223,7 +229,9 @@
         0.18,
         0.36
       ],
-      "role": "inference illustration and description"
+      "role": "inference illustration and description",
+      "purpose": "illustrative",
+      "relationshipScope": "Internal unlabelled geometry illustrates a drawing or outcome; exact internal arrow topology is not asserted."
     },
     {
       "id": "diagram",
@@ -233,7 +241,9 @@
         0.23,
         0.585
       ],
-      "role": "dominant architecture canvas and description"
+      "role": "dominant architecture canvas and description",
+      "purpose": "illustrative",
+      "relationshipScope": "Internal unlabelled geometry illustrates a drawing or outcome; exact internal arrow topology is not asserted."
     },
     {
       "id": "risk",
@@ -243,7 +253,9 @@
         0.285,
         0.4
       ],
-      "role": "risk gauge, architecture, labels and description"
+      "role": "risk gauge, architecture, labels and description",
+      "purpose": "illustrative",
+      "relationshipScope": "Internal unlabelled geometry illustrates a drawing or outcome; exact internal arrow topology is not asserted."
     },
     {
       "id": "deployment",
@@ -253,7 +265,9 @@
         0.285,
         0.17
       ],
-      "role": "cloud infrastructure, zero/five labels and description"
+      "role": "cloud infrastructure, zero/five labels and description",
+      "purpose": "illustrative",
+      "relationshipScope": "Internal unlabelled geometry illustrates a drawing or outcome; exact internal arrow topology is not asserted."
     },
     {
       "id": "publication",
@@ -263,7 +277,9 @@
         0.25,
         0.145
       ],
-      "role": "Teams and Copilot marks and description"
+      "role": "Teams and Copilot marks and description",
+      "purpose": "illustrative",
+      "relationshipScope": "Internal unlabelled geometry illustrates a drawing or outcome; exact internal arrow topology is not asserted."
     }
   ],
   "interpretationNotes": [
@@ -271,6 +287,7 @@
     "Three processing bands visually converge on the architecture canvas. The broad white flows and risk dial are explanatory associations, not proof of technical protocols.",
     "The small internal diagram has largely unlabelled geometry. Do not invent component names or infrastructure guarantees.",
     "Source product claims are benchmark content, not independently verified current product documentation.",
-    "Text transcription is reviewer ground truth; generators receive the image, not this answer key."
+    "Text transcription is reviewer ground truth; generators receive the image, not this answer key.",
+    "The architecture canvas depicts an editable Excalidraw drawing. Its unlabelled internal nodes/arrows are illustrative, not a specification of actual system topology. Preserve recognisability and visual weight; record harmless internal arrow differences as minor observations. Named route relationships, risk label associations, zero-to-five scaling and distinct outcome branches carry meaning."
   ]
 }

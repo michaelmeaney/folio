@@ -33,8 +33,30 @@ func Summary(w io.Writer, r Results) {
 	for _, item := range r.Results {
 		counts[item.Status]++
 		fmt.Fprintf(w, "%-10s %-28s r%02d %.3fs\n", item.Status, item.CaseID, item.Repetition, item.DurationSeconds)
+		if item.Review != nil {
+			fmt.Fprintf(w, "  generation: %s · review: %s\n", item.Execution.Status, item.Review.Status)
+		}
+		for _, name := range sortedEvaluations(item.Evaluations) {
+			ev := item.Evaluations[name]
+			if ev.FullAcceptanceStatus != "" {
+				fmt.Fprintf(w, "  full Folio acceptance: %s\n", ev.FullAcceptanceStatus)
+			}
+			for _, dimension := range []string{"visual-fidelity", "content-meaning", "editability", "accessibility", "verification"} {
+				if state := ev.Dimensions[dimension]; state != "" {
+					fmt.Fprintf(w, "  %s: %s\n", dimension, state)
+				}
+			}
+		}
 	}
 	fmt.Fprintf(w, "%d passed, %d failed, %d errors, %d timed out, %d unverified, %d skipped\n", counts["pass"], counts["fail"], counts["error"], counts["timeout"], counts["unverified"], counts["skipped"])
+}
+func sortedEvaluations(e map[string]EvaluationResult) []string {
+	keys := []string{}
+	for key := range e {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
 }
 func Report(path, output string, w io.Writer) error {
 	r, err := LoadResults(path)
@@ -70,7 +92,7 @@ func Report(path, output string, w io.Writer) error {
 	if resolve(".", filepath.Dir(output)) != resolve(".", filepath.Dir(path)) {
 		return fmt.Errorf("write HTML beside results.json so artifact links remain valid")
 	}
-	t := template.Must(template.New("report").Parse(`<!doctype html><html><head><meta charset="utf-8"><title>Folio benchmark</title><style>body{font:16px system-ui;max-width:1200px;margin:40px auto;padding:0 24px}img{width:100%;height:auto}section{margin:32px 0;border-top:1px solid #bbb}pre{white-space:pre-wrap}</style></head><body><h1>Folio benchmark {{.RunID}}</h1>{{range .Rows}}<section><h2>{{.CaseID}} r{{.Repetition}}: {{.Status}}</h2><p>{{.DurationSeconds}}s · {{.Diagnostic}}</p>{{if .Deck}}<a href="{{.Deck}}">PowerPoint</a>{{end}}{{range .Images}}<img src="{{.}}" alt="Benchmark render">{{end}}<ul>{{range .Violations}}<li>{{.ID}}: {{.Message}}</li>{{end}}</ul></section>{{end}}</body></html>`))
+	t := template.Must(template.New("report").Parse(`<!doctype html><html><head><meta charset="utf-8"><title>Folio benchmark</title><style>body{font:16px system-ui;max-width:1200px;margin:40px auto;padding:0 24px}img{width:100%;height:auto}section{margin:32px 0;border-top:1px solid #bbb}pre{white-space:pre-wrap}</style></head><body><h1>Folio benchmark {{.RunID}}</h1>{{range .Rows}}<section><h2>{{.CaseID}} r{{.Repetition}}: {{.Status}}</h2><p>{{.DurationSeconds}}s · {{.Diagnostic}}</p><p>Generation: {{.Execution.Status}}{{if .Review}} · Review: {{.Review.Status}}{{end}}</p>{{range .Evaluations}}{{if .FullAcceptanceStatus}}<p>Full Folio acceptance: {{.FullAcceptanceStatus}}</p>{{end}}<dl>{{range $dimension, $state := .Dimensions}}<dt>{{$dimension}}</dt><dd>{{$state}}</dd>{{end}}</dl><ul>{{range .Observations}}<li>Observation — {{.ID}}: {{.Message}}</li>{{end}}</ul>{{end}}{{if .Deck}}<a href="{{.Deck}}">PowerPoint</a>{{end}}{{range .Images}}<img src="{{.}}" alt="Benchmark render">{{end}}<ul>{{range .Violations}}<li>{{.ID}}: {{.Message}}</li>{{end}}</ul></section>{{end}}</body></html>`))
 	file, err := os.Create(output)
 	if err != nil {
 		return err
@@ -80,16 +102,18 @@ func Report(path, output string, w io.Writer) error {
 }
 
 type Delta struct {
-	CaseID               string             `json:"caseId"`
-	Repetition           int                `json:"repetition"`
-	Before               string             `json:"before,omitempty"`
-	After                string             `json:"after,omitempty"`
-	Change               string             `json:"change"`
-	DurationDelta        float64            `json:"durationDeltaSeconds"`
-	ScoreDelta           *float64           `json:"scoreDelta,omitempty"`
-	ViolationsBefore     []Violation        `json:"violationsBefore,omitempty"`
-	ViolationsAfter      []Violation        `json:"violationsAfter,omitempty"`
-	EvaluatorScoreDeltas map[string]float64 `json:"evaluatorScoreDeltas,omitempty"`
+	DimensionsBefore     map[string]map[string]string `json:"dimensionsBefore,omitempty"`
+	DimensionsAfter      map[string]map[string]string `json:"dimensionsAfter,omitempty"`
+	CaseID               string                       `json:"caseId"`
+	Repetition           int                          `json:"repetition"`
+	Before               string                       `json:"before,omitempty"`
+	After                string                       `json:"after,omitempty"`
+	Change               string                       `json:"change"`
+	DurationDelta        float64                      `json:"durationDeltaSeconds"`
+	ScoreDelta           *float64                     `json:"scoreDelta,omitempty"`
+	ViolationsBefore     []Violation                  `json:"violationsBefore,omitempty"`
+	ViolationsAfter      []Violation                  `json:"violationsAfter,omitempty"`
+	EvaluatorScoreDeltas map[string]float64           `json:"evaluatorScoreDeltas,omitempty"`
 }
 type Comparison struct {
 	Comparable bool    `json:"comparable"`
@@ -137,6 +161,18 @@ func Compare(a, b Results) (Comparison, int) {
 			out.Reason = "case set changed"
 		} else {
 			d.DurationDelta = y.DurationSeconds - x.DurationSeconds
+			d.DimensionsBefore = map[string]map[string]string{}
+			d.DimensionsAfter = map[string]map[string]string{}
+			for name, ev := range x.Evaluations {
+				if len(ev.Dimensions) > 0 {
+					d.DimensionsBefore[name] = ev.Dimensions
+				}
+			}
+			for name, ev := range y.Evaluations {
+				if len(ev.Dimensions) > 0 {
+					d.DimensionsAfter[name] = ev.Dimensions
+				}
+			}
 			if x.Status != y.Status {
 				d.Change = "status-changed"
 			}
@@ -155,6 +191,12 @@ func Compare(a, b Results) (Comparison, int) {
 				}
 			}
 			for name, ev := range y.Evaluations {
+				if len(ev.Dimensions) > 0 && (len(ev.Runtime) == 0 || string(ev.Runtime) == "null") {
+					incomplete = true
+				}
+				if old := x.Evaluations[name]; len(old.Dimensions) > 0 && (len(old.Runtime) == 0 || string(old.Runtime) == "null") {
+					incomplete = true
+				}
 				old, ok := x.Evaluations[name]
 				if !ok {
 					out.Comparable = false

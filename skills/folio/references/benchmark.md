@@ -18,6 +18,14 @@ After generation, dispatch another new agent/session with no inherited conversat
 
 Inspect visible content, composition, selected treatment and real application editing separately. Record failed requirements and unavailable checks honestly. File existence, XML text matches and passing validators do not prove visual fidelity or application editing. A reviewer may return partial evidence if presentation software is unavailable; the coordinator must preserve that result.
 
+The standard suite uses `practical-v1`: report visual fidelity, content/meaning, practical editability and accessibility independently, with pass, needs-work or unverified. Full Folio acceptance and runtime/application verification remain separate evidence, not implied by the practical quality result. Accessibility conflicts stay visible even when a faithful conversion preserves them.
+
+Use each reference region's purpose and relationship scope. Illustrative artwork conveys recognisability and visual weight; its unlabelled internal arrows do not necessarily assert technical topology. Exact direction/endpoint checks apply where relationships carry meaning. For a minor illustrative difference, record region, purpose=illustrative, severity=minor, notes and hashed evidence. Missing required content, unreadable text, changed technical meaning and flattened core content are material. Never downgrade a technical relationship failure because the drawing is visually attractive.
+
+Practical editability means editable native text and independently movable major elements. Inspect object representations and grouping; disclose image crops and unattached lines. Attached connectors are an optional capability unless the case explicitly sets `requireAttachedConnectors`. Only claim endpoint attachment after the named application move/resize test. Unavailable PowerPoint checks remain unverified; do not invent host validation.
+
+Generation and review have independent time allowances in the standard configuration. Preserve generation status, deck and render if review times out; report incomplete review independently from presentation quality. Do not reinterpret or overwrite historical frozen results under a newer rubric.
+
 ## Coordination and comparisons
 
 The parent dispatches workers, waits for completion, checks delivered files and produces the report. It does not generate all cases in its own context or accept its own accumulated analysis as independent review. Context IDs must be unique across generation and review tasks in a run. Retain actual runtime evidence for failed attempts too.

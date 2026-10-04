@@ -15,6 +15,8 @@ Use the versioned execution-result contract when schema tooling is available. Ev
 
 For attached connectors, inspect endpoint associations and test moving/resizing their components. An editable line is not an attached connector. A resizable SVG does not prove component geometry editing.
 
+Connector attachment is not a universal requirement. Native editable text and independently movable major elements provide practical editability; disclose unattached lines and raster illustration crops. Apply exact topology checks to relationships carrying meaning, not incidental arrows inside illustrative artwork. The benchmark may report this practical milestone separately from full acceptance; it does not waive the accessibility or host evidence required for full acceptance.
+
 ## All modes
 
 - The presentation opens as a normal editable PowerPoint file.

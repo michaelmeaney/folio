@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 )
 
-const Version = "0.1.2"
+const Version = "0.2.0"
 const SchemaVersion = 1
 
 type Command struct {
@@ -23,13 +23,14 @@ type EvaluatorConfig struct {
 	Resources []string `json:"resources,omitempty"`
 }
 type Controls struct {
-	Model          string `json:"model"`
-	Effort         string `json:"effort"`
-	Surface        string `json:"surface"`
-	Context        string `json:"context"`
-	DesignSystem   string `json:"designSystem"`
-	Repetitions    int    `json:"repetitions"`
-	TimeoutSeconds int    `json:"timeoutSeconds"`
+	ReviewTimeoutSeconds int    `json:"reviewTimeoutSeconds,omitempty"`
+	Model                string `json:"model"`
+	Effort               string `json:"effort"`
+	Surface              string `json:"surface"`
+	Context              string `json:"context"`
+	DesignSystem         string `json:"designSystem"`
+	Repetitions          int    `json:"repetitions"`
+	TimeoutSeconds       int    `json:"timeoutSeconds"`
 }
 type Policy struct {
 	MaxScoreDrop float64 `json:"maxScoreDrop"`
@@ -50,21 +51,25 @@ type Config struct {
 	Comparison     Policy                     `json:"comparison"`
 }
 type Criterion struct {
+	Dimension   string `json:"dimension,omitempty"`
+	Advisory    bool   `json:"advisory,omitempty"`
 	ID          string `json:"id"`
 	Gate        string `json:"gate"`
 	Description string `json:"description"`
 }
 type Case struct {
-	ID        string      `json:"id"`
-	Name      string      `json:"name,omitempty"`
-	Category  string      `json:"category,omitempty"`
-	Mode      string      `json:"mode"`
-	Operation string      `json:"operation"`
-	Slides    int         `json:"slides"`
-	ExactCopy bool        `json:"exactCopy"`
-	Prompt    string      `json:"prompt"`
-	Criteria  []Criterion `json:"criteria"`
-	Tags      []string    `json:"tags,omitempty"`
+	ReviewPolicy              string      `json:"reviewPolicy,omitempty"`
+	RequireAttachedConnectors bool        `json:"requireAttachedConnectors,omitempty"`
+	ID                        string      `json:"id"`
+	Name                      string      `json:"name,omitempty"`
+	Category                  string      `json:"category,omitempty"`
+	Mode                      string      `json:"mode"`
+	Operation                 string      `json:"operation"`
+	Slides                    int         `json:"slides"`
+	ExactCopy                 bool        `json:"exactCopy"`
+	Prompt                    string      `json:"prompt"`
+	Criteria                  []Criterion `json:"criteria"`
+	Tags                      []string    `json:"tags,omitempty"`
 }
 type Suite struct {
 	SchemaVersion int    `json:"schemaVersion"`
@@ -115,13 +120,16 @@ type EvaluationInput struct {
 	SystemCanvas           []float64       `json:"systemCanvas"`
 }
 type EvaluationResult struct {
-	SchemaVersion int             `json:"schemaVersion"`
-	Status        string          `json:"status"`
-	Score         *float64        `json:"score,omitempty"`
-	Violations    []Violation     `json:"violations,omitempty"`
-	Diagnostics   json.RawMessage `json:"diagnostics,omitempty"`
-	ContextIDs    []string        `json:"contextIds,omitempty"`
-	Runtime       json.RawMessage `json:"runtime,omitempty"`
+	FullAcceptanceStatus string            `json:"fullAcceptanceStatus,omitempty"`
+	Dimensions           map[string]string `json:"dimensions,omitempty"`
+	Observations         []Violation       `json:"observations,omitempty"`
+	SchemaVersion        int               `json:"schemaVersion"`
+	Status               string            `json:"status"`
+	Score                *float64          `json:"score,omitempty"`
+	Violations           []Violation       `json:"violations,omitempty"`
+	Diagnostics          json.RawMessage   `json:"diagnostics,omitempty"`
+	ContextIDs           []string          `json:"contextIds,omitempty"`
+	Runtime              json.RawMessage   `json:"runtime,omitempty"`
 }
 type Evaluator interface {
 	Name() string
